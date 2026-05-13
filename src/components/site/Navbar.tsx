@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { ShoppingBag, Menu, X } from "lucide-react";
 
 const links = [
@@ -12,17 +13,33 @@ const links = [
 
 export function Navbar({ cartCount, onCartClick }: { cartCount: number; onCartClick: () => void }) {
   const [open, setOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    // If we're not on the home page, navigate to home page with hash
+    if (location.pathname !== "/") {
+      e.preventDefault();
+      navigate("/" + href);
+      setOpen(false);
+    }
+  };
 
   return (
     <header className="sticky top-0 z-50 backdrop-blur-md bg-background/80 border-b border-border">
       <div className="container-prose flex h-16 items-center justify-between gap-4">
-        <a href="#top" className="flex items-center gap-3">
+        <a href="/" className="flex items-center gap-3">
           <img src="/logo.svg" alt="Thiru Annamalai Natural Foods" className="h-12 w-auto" />
         </a>
 
         <nav className="hidden lg:flex items-center gap-7 text-sm">
           {links.map((l) => (
-            <a key={l.href} href={l.href} className="text-foreground/80 hover:text-accent transition-colors">
+            <a 
+              key={l.href} 
+              href={l.href} 
+              onClick={(e) => handleNavClick(e, l.href)}
+              className="text-foreground/80 hover:text-accent transition-colors"
+            >
               {l.label}
             </a>
           ))}
@@ -52,7 +69,12 @@ export function Navbar({ cartCount, onCartClick }: { cartCount: number; onCartCl
         <div className="lg:hidden border-t border-border bg-background">
           <nav className="container-prose py-4 grid gap-3 text-sm">
             {links.map((l) => (
-              <a key={l.href} href={l.href} onClick={() => setOpen(false)} className="py-1">
+              <a 
+                key={l.href} 
+                href={l.href} 
+                onClick={(e) => handleNavClick(e, l.href)} 
+                className="py-1"
+              >
                 {l.label}
               </a>
             ))}
