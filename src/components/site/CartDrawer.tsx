@@ -1,6 +1,7 @@
 import { X, Minus, Plus, Trash2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import type { CartItem } from "@/lib/products";
+import { useCurrency } from "@/lib/CurrencyContext";
 
 export function CartDrawer({
   open,
@@ -15,6 +16,7 @@ export function CartDrawer({
   updateQty: (id: string, qty: number) => void;
   remove: (id: string) => void;
 }) {
+  const { currency, formatPrice } = useCurrency();
   const subtotal = items.reduce((s, i) => s + i.price * i.qty, 0);
 
   // Save cart to localStorage whenever items change
@@ -49,7 +51,7 @@ export function CartDrawer({
               <img src={i.image} alt={i.name} className="h-16 w-16 rounded-lg object-cover" />
               <div className="flex-1 min-w-0">
                 <p className="font-medium text-sm truncate">{i.name}</p>
-                <p className="text-xs text-muted-foreground">₹{i.price} · {i.weight}</p>
+                <p className="text-xs text-muted-foreground">{formatPrice(i.price)} · {i.weight}</p>
                 <div className="mt-2 flex items-center gap-2">
                   <button onClick={() => updateQty(i.id, Math.max(1, i.qty - 1))} className="h-6 w-6 grid place-items-center rounded border border-border">
                     <Minus className="h-3 w-3" />
@@ -70,7 +72,7 @@ export function CartDrawer({
         <div className="absolute bottom-0 left-0 right-0 p-5 border-t border-border bg-background space-y-3">
           <div className="flex justify-between text-sm">
             <span className="text-muted-foreground">Subtotal</span>
-            <span className="font-medium">₹{subtotal} INR</span>
+            <span className="font-medium">{formatPrice(subtotal)} {currency.code}</span>
           </div>
           <p className="text-xs text-muted-foreground">Delivery charges calculated at checkout.</p>
           <Link

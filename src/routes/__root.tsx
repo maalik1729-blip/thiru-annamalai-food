@@ -1,4 +1,7 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { CurrencyProvider } from "@/lib/CurrencyContext";
+import { CartProvider, useCart } from "@/lib/CartContext";
+import { CartDrawer } from "@/components/site/CartDrawer";
 import {
   Outlet,
   Link,
@@ -109,7 +112,21 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Outlet />
+      <CurrencyProvider>
+        <CartProvider>
+          <RootContent />
+        </CartProvider>
+      </CurrencyProvider>
     </QueryClientProvider>
+  );
+}
+
+function RootContent() {
+  const { cart, cartOpen, setCartOpen, updateQty, remove } = useCart();
+  return (
+    <>
+      <Outlet />
+      <CartDrawer open={cartOpen} onClose={() => setCartOpen(false)} items={cart} updateQty={updateQty} remove={remove} />
+    </>
   );
 }

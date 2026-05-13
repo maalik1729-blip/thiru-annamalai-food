@@ -4,9 +4,13 @@ import { ArrowLeft, ShoppingBag, CreditCard, Wallet, Banknote } from "lucide-rea
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/sections";
 import type { CartItem } from "@/lib/products";
+import { useCurrency } from "@/lib/CurrencyContext";
+import { useCart } from "@/lib/CartContext";
 
 export default function CheckoutPage() {
   const navigate = useNavigate();
+  const { currency, formatPrice } = useCurrency();
+  const { cart, cartOpen, setCartOpen } = useCart();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -19,15 +23,6 @@ export default function CheckoutPage() {
     country: "India",
     notes: "",
     paymentMethod: "cod", // cod, card, upi
-  });
-
-  // Get cart from localStorage
-  const [cart] = useState<CartItem[]>(() => {
-    if (typeof window !== "undefined") {
-      const saved = localStorage.getItem("cart");
-      return saved ? JSON.parse(saved) : [];
-    }
-    return [];
   });
 
   // Scroll to top when component mounts
@@ -64,7 +59,7 @@ export default function CheckoutPage() {
   if (cart.length === 0) {
     return (
       <div className="min-h-screen bg-background">
-        <Navbar cartCount={0} onCartClick={() => {}} />
+        <Navbar />
         <div className="container-prose py-20 text-center">
           <ShoppingBag className="h-16 w-16 mx-auto text-muted-foreground mb-4" />
           <h1 className="text-3xl font-display mb-4">Your cart is empty</h1>
@@ -80,7 +75,7 @@ export default function CheckoutPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar cartCount={cart.length} onCartClick={() => {}} />
+      <Navbar />
       
       <div className="container-prose py-12">
         <Link to="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-accent mb-8">
@@ -286,8 +281,8 @@ export default function CheckoutPage() {
                     <img src={item.image} alt={item.name} className="h-16 w-16 rounded-lg object-cover" />
                     <div className="flex-1 min-w-0">
                       <p className="font-medium text-sm truncate">{item.name}</p>
-                      <p className="text-xs text-muted-foreground">Qty: {item.qty} × ₹{item.price}</p>
-                      <p className="text-sm font-medium mt-1">₹{item.price * item.qty}</p>
+                      <p className="text-xs text-muted-foreground">Qty: {item.qty} × {formatPrice(item.price)}</p>
+                      <p className="text-sm font-medium mt-1">{formatPrice(item.price * item.qty)}</p>
                     </div>
                   </div>
                 ))}
@@ -296,18 +291,18 @@ export default function CheckoutPage() {
               <div className="border-t border-border pt-4 space-y-2">
                 <div className="flex justify-between text-sm">
                   <span className="text-muted-foreground">Subtotal</span>
-                  <span className="font-medium">₹{subtotal}</span>
+                  <span className="font-medium">{formatPrice(subtotal)}</span>
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="text-muted-foreground">Shipping</span>
-                  <span className="font-medium">{shippingCost === 0 ? 'FREE' : `₹${shippingCost}`}</span>
+                  <span className="font-medium">{shippingCost === 0 ? 'FREE' : formatPrice(shippingCost)}</span>
                 </div>
                 {subtotal >= 500 && (
                   <p className="text-xs text-accent">🎉 You got free shipping!</p>
                 )}
                 <div className="flex justify-between text-lg font-display pt-2 border-t border-border">
                   <span>Total</span>
-                  <span>₹{total}</span>
+                  <span>{formatPrice(total)} {currency.code}</span>
                 </div>
               </div>
 

@@ -4,12 +4,15 @@ import { ArrowLeft, Star, ShoppingBag, Minus, Plus, Package, Clock, Leaf, Award 
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/sections";
 import { products } from "@/lib/products";
-import type { Product } from "@/lib/products";
+import { useCurrency } from "@/lib/CurrencyContext";
+import { useCart } from "@/lib/CartContext";
 import { toast } from "sonner";
 
 export default function ProductDetailsPage() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const { formatPrice } = useCurrency();
+  const { addToCart } = useCart();
   const [quantity, setQuantity] = useState(1);
   
   const product = products.find(p => p.id === id);
@@ -22,7 +25,7 @@ export default function ProductDetailsPage() {
   if (!product) {
     return (
       <div className="min-h-screen bg-background">
-        <Navbar cartCount={0} onCartClick={() => {}} />
+        <Navbar />
         <div className="container-prose py-20 text-center">
           <h1 className="text-3xl font-display mb-4">Product not found</h1>
           <Link to="/" className="text-accent hover:underline">
@@ -35,16 +38,7 @@ export default function ProductDetailsPage() {
   }
 
   const handleAddToCart = () => {
-    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
-    const existingItem = cart.find((item: any) => item.id === product.id);
-    
-    if (existingItem) {
-      existingItem.qty += quantity;
-    } else {
-      cart.push({ ...product, qty: quantity });
-    }
-    
-    localStorage.setItem("cart", JSON.stringify(cart));
+    addToCart({ ...product });
     toast.success(`Added ${quantity} ${product.name} to cart!`);
     
     // Redirect to checkout
@@ -53,7 +47,7 @@ export default function ProductDetailsPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar cartCount={0} onCartClick={() => {}} />
+      <Navbar />
       
       <div className="container-prose py-12">
         <Link to="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-accent mb-8">
@@ -102,7 +96,7 @@ export default function ProductDetailsPage() {
                 </span>
               </div>
 
-              <div className="text-4xl font-display mb-8">₹{product.price}</div>
+              <div className="text-4xl font-display mb-8">{formatPrice(product.price)}</div>
 
               <div className="space-y-4 mb-8">
                 <div className="flex items-start gap-3">
@@ -156,7 +150,7 @@ export default function ProductDetailsPage() {
                 className="w-full h-14 rounded-full bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors flex items-center justify-center gap-2"
               >
                 <ShoppingBag className="h-5 w-5" />
-                Add to Cart - ₹{product.price * quantity}
+                Add to Cart - {formatPrice(product.price * quantity)}
               </button>
             </div>
 

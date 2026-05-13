@@ -2,30 +2,16 @@ import { useState } from "react";
 import { Star, ArrowRight, Sparkles } from "lucide-react";
 import heroImg from "@/assets/hero-laddus.jpg";
 import { Navbar } from "@/components/site/Navbar";
-import { CartDrawer } from "@/components/site/CartDrawer";
 import { ProductsSection, StorySection, WhyUs, Shipping, Testimonials, Contact, Footer } from "@/components/site/sections";
 import type { Product, CartItem } from "@/lib/products";
+import { useCart } from "@/lib/CartContext";
 
 export default function HomePage() {
-  const [cart, setCart] = useState<CartItem[]>([]);
-  const [cartOpen, setCartOpen] = useState(false);
-
-  const addToCart = (p: Product) => {
-    setCart((prev) => {
-      const exists = prev.find((i) => i.id === p.id);
-      if (exists) return prev.map((i) => (i.id === p.id ? { ...i, qty: i.qty + 1 } : i));
-      return [...prev, { ...p, qty: 1 }];
-    });
-    setCartOpen(true);
-  };
-
-  const updateQty = (id: string, qty: number) => setCart((prev) => prev.map((i) => (i.id === id ? { ...i, qty } : i)));
-  const remove = (id: string) => setCart((prev) => prev.filter((i) => i.id !== id));
-  const cartCount = cart.reduce((s, i) => s + i.qty, 0);
+  const { cart, cartOpen, setCartOpen, addToCart, updateQty, remove, cartCount } = useCart();
 
   return (
     <div id="top" className="min-h-screen bg-background">
-      <Navbar cartCount={cartCount} onCartClick={() => setCartOpen(true)} />
+      <Navbar />
 
       {/* Hero */}
       <section className="relative overflow-hidden">
@@ -105,8 +91,6 @@ export default function HomePage() {
       <Testimonials />
       <Contact />
       <Footer />
-
-      <CartDrawer open={cartOpen} onClose={() => setCartOpen(false)} items={cart} updateQty={updateQty} remove={remove} />
     </div>
   );
 }

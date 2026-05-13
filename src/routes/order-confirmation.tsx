@@ -3,9 +3,11 @@ import { Link, useSearchParams } from "react-router-dom";
 import { CheckCircle, Package, MapPin, CreditCard, ArrowRight } from "lucide-react";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/sections";
+import { useCurrency } from "@/lib/CurrencyContext";
 
 export default function OrderConfirmationPage() {
   const [searchParams] = useSearchParams();
+  const { currency, formatPrice } = useCurrency();
   const [orderDetails, setOrderDetails] = useState<any>(null);
 
   useEffect(() => {
@@ -22,7 +24,7 @@ export default function OrderConfirmationPage() {
   if (!orderDetails) {
     return (
       <div className="min-h-screen bg-background">
-        <Navbar cartCount={0} onCartClick={() => {}} />
+        <Navbar />
         <div className="container-prose py-20 text-center">
           <h1 className="text-3xl font-display mb-4">No order found</h1>
           <Link to="/" className="text-accent hover:underline">
@@ -38,7 +40,7 @@ export default function OrderConfirmationPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar cartCount={0} onCartClick={() => {}} />
+      <Navbar />
       
       <div className="container-prose py-12">
         {/* Success Message */}
@@ -111,9 +113,9 @@ export default function OrderConfirmationPage() {
                       <div className="flex-1">
                         <p className="font-medium text-sm">{item.name}</p>
                         <p className="text-xs text-muted-foreground">
-                          Qty: {item.qty} × ₹{item.price}
+                          Qty: {item.qty} × {formatPrice(item.price)}
                         </p>
-                        <p className="text-sm font-medium mt-1">₹{item.price * item.qty}</p>
+                        <p className="text-sm font-medium mt-1">{formatPrice(item.price * item.qty)}</p>
                       </div>
                     </div>
                   ))}
@@ -128,17 +130,17 @@ export default function OrderConfirmationPage() {
             <div className="space-y-2">
               <div className="flex justify-between text-sm">
                 <span className="text-muted-foreground">Subtotal</span>
-                <span className="font-medium">₹{orderDetails.subtotal}</span>
+                <span className="font-medium">{formatPrice(orderDetails.subtotal)}</span>
               </div>
               <div className="flex justify-between text-sm">
                 <span className="text-muted-foreground">Shipping</span>
                 <span className="font-medium">
-                  {orderDetails.shipping === 0 ? "FREE" : `₹${orderDetails.shipping}`}
+                  {orderDetails.shipping === 0 ? "FREE" : formatPrice(orderDetails.shipping)}
                 </span>
               </div>
               <div className="flex justify-between text-lg font-display pt-2 border-t border-border">
                 <span>Total</span>
-                <span>₹{orderDetails.total}</span>
+                <span>{formatPrice(orderDetails.total)} {currency.code}</span>
               </div>
             </div>
           </div>

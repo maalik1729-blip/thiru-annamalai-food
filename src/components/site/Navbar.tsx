@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ShoppingBag, Menu, X } from "lucide-react";
+import { CurrencySelector } from "./CurrencySelector";
+import { useCart } from "@/lib/CartContext";
 
 const links = [
   { href: "#shop", label: "Shop" },
@@ -10,7 +12,8 @@ const links = [
   { href: "#contact", label: "Contact" },
 ];
 
-export function Navbar({ cartCount, onCartClick }: { cartCount: number; onCartClick: () => void }) {
+export function Navbar() {
+  const { cartCount, setCartOpen } = useCart();
   const [open, setOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
@@ -26,9 +29,9 @@ export function Navbar({ cartCount, onCartClick }: { cartCount: number; onCartCl
 
   return (
     <header className="sticky top-0 z-50 backdrop-blur-md bg-background/80 border-b border-border">
-      <div className="container-prose flex h-16 items-center justify-between gap-4">
-        <a href="/" className="flex items-center gap-3">
-          <img src="/logo.svg" alt="Thiru Annamalai Natural Foods" className="h-12 w-auto" />
+      <div className="container-prose flex h-20 md:h-24 items-center justify-between gap-4">
+        <a href="/" className="flex items-center">
+          <img src="/logo.svg" alt="Thiru Annamalai Natural Foods" className="h-16 md:h-20 w-auto mix-blend-multiply scale-125 origin-left object-contain" />
         </a>
 
         <nav className="hidden lg:flex items-center gap-7 text-sm">
@@ -45,8 +48,11 @@ export function Navbar({ cartCount, onCartClick }: { cartCount: number; onCartCl
         </nav>
 
         <div className="flex items-center gap-2">
+          <div className="mr-2">
+            <CurrencySelector />
+          </div>
           <button
-            onClick={onCartClick}
+            onClick={() => setCartOpen(true)}
             className="relative inline-flex items-center justify-center h-10 w-10 rounded-full bg-secondary hover:bg-accent hover:text-accent-foreground transition-colors"
             aria-label="Cart"
           >

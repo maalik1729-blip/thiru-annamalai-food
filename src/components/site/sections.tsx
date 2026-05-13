@@ -2,6 +2,7 @@ import { Star, Leaf, Hand, ShieldCheck, Plane, CreditCard, Package, MessageCircl
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { products, type Product } from "@/lib/products";
+import { useCurrency } from "@/lib/CurrencyContext";
 import aboutImg from "@/assets/about-tamil-man.png";
 
 function Stars({ rating }: { rating: number }) {
@@ -18,6 +19,7 @@ function Stars({ rating }: { rating: number }) {
 }
 
 export function ProductsSection({ onAdd }: { onAdd: (p: Product) => void }) {
+  const { formatPrice } = useCurrency();
   return (
     <section id="shop" className="py-24 bg-gradient-to-b from-background to-cream/40">
       <div className="container-prose">
@@ -66,7 +68,7 @@ export function ProductsSection({ onAdd }: { onAdd: (p: Product) => void }) {
                   <li className="line-clamp-2"><span className="text-foreground/70">Made with:</span> {p.ingredients}</li>
                 </ul>
                 <div className="flex items-center justify-between pt-2 mt-auto">
-                  <span className="font-display text-2xl">₹{p.price}</span>
+                  <span className="font-display text-2xl">{formatPrice(p.price)}</span>
                   <button
                     onClick={() => onAdd(p)}
                     className="px-4 h-9 rounded-full bg-primary text-primary-foreground text-xs font-medium hover:bg-accent hover:text-accent-foreground transition-colors active:scale-95"
@@ -181,6 +183,7 @@ const shipping = [
 ];
 
 export function Shipping() {
+  const { formatPrice } = useCurrency();
   return (
     <section id="shipping" className="py-24">
       <div className="container-prose">
@@ -195,7 +198,7 @@ export function Shipping() {
               shipped via trusted international couriers to ensure your products arrive in perfect condition.
             </p>
             <div className="p-5 rounded-2xl bg-secondary/60 border border-border">
-              <p className="text-sm font-medium mb-1">Free delivery on orders over ₹500 (India)</p>
+              <p className="text-sm font-medium mb-1">Free delivery on orders over {formatPrice(500)} (India)</p>
               <p className="text-xs text-muted-foreground">International shipping available. Contact us for bulk orders and special delivery arrangements worldwide.</p>
             </div>
           </div>
@@ -366,8 +369,8 @@ export function Footer() {
       <div className="container-prose">
         <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-cream/10">
           <div className="lg:col-span-2">
-            <div className="mb-4">
-              <img src="/logo.svg" alt="Thiru Annamalai Natural Foods" className="h-16 w-auto" />
+            <div className="mb-6 inline-block bg-white/95 p-4 rounded-2xl shadow-soft">
+              <img src="/logo.svg" alt="Thiru Annamalai Natural Foods" className="h-20 sm:h-24 w-auto object-contain scale-[1.1] origin-left" />
             </div>
             <p className="text-sm text-cream/70 max-w-sm leading-relaxed mb-5">
               Handmade laddus, peanut bars, gingelly bars, and kamarkat from Madurai, Tamil Nadu. Healthy in Every Piece of Bite.
