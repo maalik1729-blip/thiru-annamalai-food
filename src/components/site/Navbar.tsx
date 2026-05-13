@@ -1,0 +1,64 @@
+import { useState } from "react";
+import { ShoppingBag, Menu, X } from "lucide-react";
+
+const links = [
+  { href: "#shop", label: "Shop" },
+  { href: "#story", label: "Our Story" },
+  { href: "#why", label: "Why Us" },
+  { href: "#shipping", label: "Shipping" },
+  { href: "#faq", label: "FAQ" },
+  { href: "#contact", label: "Contact" },
+];
+
+export function Navbar({ cartCount, onCartClick }: { cartCount: number; onCartClick: () => void }) {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <header className="sticky top-0 z-50 backdrop-blur-md bg-background/80 border-b border-border">
+      <div className="container-prose flex h-16 items-center justify-between gap-4">
+        <a href="#top" className="flex items-center gap-3">
+          <img src="/logo.svg" alt="Thiru Annamalai Natural Foods" className="h-12 w-auto" />
+        </a>
+
+        <nav className="hidden lg:flex items-center gap-7 text-sm">
+          {links.map((l) => (
+            <a key={l.href} href={l.href} className="text-foreground/80 hover:text-accent transition-colors">
+              {l.label}
+            </a>
+          ))}
+        </nav>
+
+        <div className="flex items-center gap-2">
+          <button
+            onClick={onCartClick}
+            className="relative inline-flex items-center justify-center h-10 w-10 rounded-full bg-secondary hover:bg-accent hover:text-accent-foreground transition-colors"
+            aria-label="Cart"
+          >
+            <ShoppingBag className="h-4 w-4" />
+            {cartCount > 0 && (
+              <span className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-accent text-accent-foreground text-[10px] grid place-items-center font-semibold">
+                {cartCount}
+              </span>
+            )}
+          </button>
+
+          <button className="lg:hidden h-10 w-10 grid place-items-center rounded-full hover:bg-secondary" onClick={() => setOpen(!open)} aria-label="Menu">
+            {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+          </button>
+        </div>
+      </div>
+
+      {open && (
+        <div className="lg:hidden border-t border-border bg-background">
+          <nav className="container-prose py-4 grid gap-3 text-sm">
+            {links.map((l) => (
+              <a key={l.href} href={l.href} onClick={() => setOpen(false)} className="py-1">
+                {l.label}
+              </a>
+            ))}
+          </nav>
+        </div>
+      )}
+    </header>
+  );
+}

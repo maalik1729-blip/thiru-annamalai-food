@@ -1,0 +1,25 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Circle -->
+  <circle cx="32" cy="32" r="30" fill="#5C0A0A"/>
+  <circle cx="32" cy="32" r="28" fill="#5C0A0A" stroke="#D4AF37" stroke-width="2"/>
+  
+  <!-- Simplified Elephant Head -->
+  <g transform="translate(32, 32)">
+    <!-- Trunk -->
+    <path d="M 0,-10 Q -3,-15 -5,-18 L -5,-22 Q -2,-19 0,-16 Z" fill="#D4AF37"/>
+    <!-- Left Tusk -->
+    <path d="M -10,-5 Q -13,-10 -15,-13 L -12,-8 Z" fill="#D4AF37"/>
+    <!-- Right Tusk -->
+    <path d="M 10,-5 Q 13,-10 15,-13 L 12,-8 Z" fill="#D4AF37"/>
+    <!-- Head -->
+    <ellipse cx="0" cy="0" rx="12" ry="15" fill="#8B6914"/>
+    <!-- Ears -->
+    <ellipse cx="-15" cy="0" rx="7" ry="12" fill="#8B6914"/>
+    <ellipse cx="15" cy="0" rx="7" ry="12" fill="#8B6914"/>
+    <!-- Eyes -->
+    <circle cx="-5" cy="-3" r="2" fill="#FFF"/>
+    <circle cx="5" cy="-3" r="2" fill="#FFF"/>
+    <!-- Letter T -->
+    <text x="-6" y="8" font-family="serif" font-size="14" font-weight="bold" fill="#FFF">T</text>
+  </g>
+</svg>
