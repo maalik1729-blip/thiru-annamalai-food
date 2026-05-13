@@ -32,7 +32,7 @@ export function ProductsSection({ onAdd }: { onAdd: (p: Product) => void }) {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {products.map((p) => (
-            <article key={p.id} className="group bg-card rounded-2xl overflow-hidden border border-border hover:shadow-warm transition-all duration-500">
+            <article key={p.id} className="group bg-card rounded-2xl overflow-hidden border border-border hover:shadow-warm transition-all duration-500 flex flex-col">
               <div className="relative aspect-square overflow-hidden bg-secondary">
                 <img
                   src={p.image}
@@ -48,7 +48,7 @@ export function ProductsSection({ onAdd }: { onAdd: (p: Product) => void }) {
                   </span>
                 )}
               </div>
-              <div className="p-5 space-y-3">
+              <div className="p-5 space-y-3 flex-1 flex flex-col">
                 <div>
                   <h3 className="font-display text-xl">{p.name}</h3>
                   <p className="text-xs text-muted-foreground mt-1">{p.tagline}</p>
@@ -57,16 +57,16 @@ export function ProductsSection({ onAdd }: { onAdd: (p: Product) => void }) {
                   <Stars rating={p.rating} />
                   <span className="text-muted-foreground">{p.rating} · {p.reviews}</span>
                 </div>
-                <ul className="text-xs text-muted-foreground space-y-1 pt-2 border-t border-border">
+                <ul className="text-xs text-muted-foreground space-y-1 pt-2 border-t border-border flex-1">
                   <li><span className="text-foreground/70">Weight:</span> {p.weight}</li>
                   <li><span className="text-foreground/70">Shelf life:</span> {p.shelfLife}</li>
-                  <li className="line-clamp-1"><span className="text-foreground/70">Made with:</span> {p.ingredients}</li>
+                  <li className="line-clamp-2"><span className="text-foreground/70">Made with:</span> {p.ingredients}</li>
                 </ul>
-                <div className="flex items-center justify-between pt-2">
+                <div className="flex items-center justify-between pt-2 mt-auto">
                   <span className="font-display text-2xl">₹{p.price}</span>
                   <button
                     onClick={() => onAdd(p)}
-                    className="px-4 h-9 rounded-full bg-primary text-primary-foreground text-xs font-medium hover:bg-accent hover:text-accent-foreground transition-colors"
+                    className="px-4 h-9 rounded-full bg-primary text-primary-foreground text-xs font-medium hover:bg-accent hover:text-accent-foreground transition-colors active:scale-95"
                   >
                     Add to cart
                   </button>
