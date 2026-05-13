@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { ShoppingBag, Menu, X } from "lucide-react";
 
 const links = [
   { href: "#shop", label: "Shop" },
@@ -45,6 +45,19 @@ export function Navbar({ cartCount, onCartClick }: { cartCount: number; onCartCl
         </nav>
 
         <div className="flex items-center gap-2">
+          <button
+            onClick={onCartClick}
+            className="relative inline-flex items-center justify-center h-10 w-10 rounded-full bg-secondary hover:bg-accent hover:text-accent-foreground transition-colors"
+            aria-label="Cart"
+          >
+            <ShoppingBag className="h-4 w-4" />
+            {cartCount > 0 && (
+              <span className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-accent text-accent-foreground text-[10px] grid place-items-center font-semibold">
+                {cartCount}
+              </span>
+            )}
+          </button>
+
           <button className="lg:hidden h-10 w-10 grid place-items-center rounded-full hover:bg-secondary" onClick={() => setOpen(!open)} aria-label="Menu">
             {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
           </button>
