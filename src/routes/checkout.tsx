@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, ShoppingBag, CreditCard, Wallet, Banknote } from "lucide-react";
 import { Navbar } from "@/components/site/Navbar";
@@ -29,6 +29,11 @@ export default function CheckoutPage() {
     }
     return [];
   });
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
   const shippingCost = subtotal >= 500 ? 0 : 50;

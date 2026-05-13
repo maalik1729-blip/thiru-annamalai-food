@@ -9,6 +9,9 @@ export default function OrderConfirmationPage() {
   const [orderDetails, setOrderDetails] = useState<any>(null);
 
   useEffect(() => {
+    // Scroll to top
+    window.scrollTo(0, 0);
+    
     // Get order details from localStorage
     const savedOrder = localStorage.getItem("lastOrder");
     if (savedOrder) {

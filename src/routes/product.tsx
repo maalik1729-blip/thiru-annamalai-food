@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { ArrowLeft, Star, ShoppingBag, Minus, Plus, Package, Clock, Leaf, Award } from "lucide-react";
 import { Navbar } from "@/components/site/Navbar";
@@ -13,6 +13,11 @@ export default function ProductDetailsPage() {
   const [quantity, setQuantity] = useState(1);
   
   const product = products.find(p => p.id === id);
+
+  // Scroll to top when component mounts or product changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [id]);
 
   if (!product) {
     return (
