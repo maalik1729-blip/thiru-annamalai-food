@@ -1,4 +1,3 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { Star, ArrowRight, Sparkles } from "lucide-react";
 import heroImg from "@/assets/hero-laddus.jpg";
@@ -7,20 +6,7 @@ import { CartDrawer } from "@/components/site/CartDrawer";
 import { ProductsSection, StorySection, WhyUs, Shipping, Testimonials, FAQ, Contact, Footer } from "@/components/site/sections";
 import type { Product, CartItem } from "@/lib/products";
 
-export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Thiru Annamalai Natural Foods — Handmade Laddus, Bars & Natural Snacks" },
-      { name: "description", content: "Premium handmade laddus, peanut bars, gingelly bars, and kamarkat from Madurai, Tamil Nadu. Natural ingredients, no preservatives, made with traditional recipes." },
-      { property: "og:title", content: "Thiru Annamalai Natural Foods — Handmade Natural Foods" },
-      { property: "og:description", content: "Authentic traditional recipes. Handmade laddus, bars & healthy snacks. Healthy in Every Piece of Bite." },
-      { property: "og:type", content: "website" },
-    ],
-  }),
-  component: HomePage,
-});
-
-function HomePage() {
+export default function HomePage() {
   const [cart, setCart] = useState<CartItem[]>([]);
   const [cartOpen, setCartOpen] = useState(false);
 

@@ -1,19 +1,9 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/sections";
 
-export const Route = createFileRoute("/cancellation-refund")({
-  head: () => ({
-    meta: [
-      { title: "Cancellation & Refund Policy - Thiru Annamalai Natural Foods" },
-      { name: "description", content: "Learn about our cancellation and refund policy for orders." },
-    ],
-  }),
-  component: CancellationRefundPage,
-});
-
-function CancellationRefundPage() {
+export default function CancellationRefundPage() {
   return (
     <div className="min-h-screen bg-background">
       <Navbar cartCount={0} onCartClick={() => {}} />

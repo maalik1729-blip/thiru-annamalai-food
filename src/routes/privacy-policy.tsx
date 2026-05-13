@@ -1,19 +1,9 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/sections";
 
-export const Route = createFileRoute("/privacy-policy")({
-  head: () => ({
-    meta: [
-      { title: "Privacy Policy - Thiru Annamalai Natural Foods" },
-      { name: "description", content: "Learn how we protect your personal information and privacy." },
-    ],
-  }),
-  component: PrivacyPolicyPage,
-});
-
-function PrivacyPolicyPage() {
+export default function PrivacyPolicyPage() {
   return (
     <div className="min-h-screen bg-background">
       <Navbar cartCount={0} onCartClick={() => {}} />

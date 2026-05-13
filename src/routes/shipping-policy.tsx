@@ -1,19 +1,9 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/sections";
 
-export const Route = createFileRoute("/shipping-policy")({
-  head: () => ({
-    meta: [
-      { title: "Shipping Policy - Thiru Annamalai Natural Foods" },
-      { name: "description", content: "Learn about our shipping policy, delivery timelines, and packaging standards." },
-    ],
-  }),
-  component: ShippingPolicyPage,
-});
-
-function ShippingPolicyPage() {
+export default function ShippingPolicyPage() {
   return (
     <div className="min-h-screen bg-background">
       <Navbar cartCount={0} onCartClick={() => {}} />

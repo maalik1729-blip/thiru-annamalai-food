@@ -1,19 +1,9 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/sections";
 
-export const Route = createFileRoute("/terms-conditions")({
-  head: () => ({
-    meta: [
-      { title: "Terms & Conditions - Thiru Annamalai Natural Foods" },
-      { name: "description", content: "Read our terms and conditions for using our services." },
-    ],
-  }),
-  component: TermsConditionsPage,
-});
-
-function TermsConditionsPage() {
+export default function TermsConditionsPage() {
   return (
     <div className="min-h-screen bg-background">
       <Navbar cartCount={0} onCartClick={() => {}} />

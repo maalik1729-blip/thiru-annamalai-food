@@ -1,21 +1,11 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, ShoppingBag } from "lucide-react";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/sections";
 import type { CartItem } from "@/lib/products";
 
-export const Route = createFileRoute("/checkout")({
-  head: () => ({
-    meta: [
-      { title: "Checkout - Thiru Annamalai Natural Foods" },
-      { name: "description", content: "Complete your order for handmade natural foods." },
-    ],
-  }),
-  component: CheckoutPage,
-});
-
-function CheckoutPage() {
+export default function CheckoutPage() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     firstName: "",
@@ -61,7 +51,7 @@ function CheckoutPage() {
     
     // Show success message and redirect
     alert("Thank you! Your order has been sent via WhatsApp. We'll contact you shortly to confirm.");
-    navigate({ to: "/" });
+    navigate("/");
   };
 
   if (cart.length === 0) {
