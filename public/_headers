@@ -1,0 +1,15 @@
+/favicon.svg
+  Content-Type: image/svg+xml
+  Cache-Control: public, max-age=31536000, immutable
+
+/logo.svg
+  Content-Type: image/svg+xml
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
