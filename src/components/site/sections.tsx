@@ -2,7 +2,7 @@ import { Star, Leaf, Hand, ShieldCheck, Plane, CreditCard, Package, MessageCircl
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { products, type Product } from "@/lib/products";
-import aboutImg from "@/assets/about-women.jpg";
+import aboutImg from "@/assets/about-tamil-man.png";
 
 function Stars({ rating }: { rating: number }) {
   return (
@@ -90,7 +90,7 @@ export function StorySection() {
         <div className="relative">
           <img
             src={aboutImg}
-            alt="Rural Indian women hand-making laddus in a traditional village kitchen"
+            alt="Rural Tamil man hand-making laddus in a traditional village kitchen in Madurai"
             loading="lazy"
             width={1280}
             height={896}
