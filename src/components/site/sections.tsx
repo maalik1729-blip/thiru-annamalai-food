@@ -405,7 +405,6 @@ export function Footer() {
               <li><a href="/cancellation-refund" className="hover:text-accent">Cancellation & Refund</a></li>
               <li><a href="/privacy-policy" className="hover:text-accent">Privacy Policy</a></li>
               <li><a href="/terms-conditions" className="hover:text-accent">Terms & Conditions</a></li>
-              <li><a href="#faq" className="hover:text-accent">FAQ</a></li>
             </ul>
           </div>
         </div>

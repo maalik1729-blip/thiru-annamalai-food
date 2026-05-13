@@ -3,7 +3,7 @@ import { Star, ArrowRight, Sparkles } from "lucide-react";
 import heroImg from "@/assets/hero-laddus.jpg";
 import { Navbar } from "@/components/site/Navbar";
 import { CartDrawer } from "@/components/site/CartDrawer";
-import { ProductsSection, StorySection, WhyUs, Shipping, Testimonials, FAQ, Contact, Footer } from "@/components/site/sections";
+import { ProductsSection, StorySection, WhyUs, Shipping, Testimonials, Contact, Footer } from "@/components/site/sections";
 import type { Product, CartItem } from "@/lib/products";
 
 export default function HomePage() {
@@ -103,7 +103,6 @@ export default function HomePage() {
       <WhyUs />
       <Shipping />
       <Testimonials />
-      <FAQ />
       <Contact />
       <Footer />
 
