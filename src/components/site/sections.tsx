@@ -1,5 +1,6 @@
 import { Star, Leaf, Hand, ShieldCheck, Plane, CreditCard, Package, MessageCircle, Mail, Instagram, Facebook, Youtube, Plus, Minus } from "lucide-react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { products, type Product } from "@/lib/products";
 import aboutImg from "@/assets/about-women.jpg";
 
@@ -33,7 +34,7 @@ export function ProductsSection({ onAdd }: { onAdd: (p: Product) => void }) {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {products.map((p) => (
             <article key={p.id} className="group bg-card rounded-2xl overflow-hidden border border-border hover:shadow-warm transition-all duration-500 flex flex-col">
-              <div className="relative aspect-square overflow-hidden bg-secondary">
+              <Link to={`/product/${p.id}`} className="relative aspect-square overflow-hidden bg-secondary block">
                 <img
                   src={p.image}
                   alt={p.name}
@@ -47,10 +48,12 @@ export function ProductsSection({ onAdd }: { onAdd: (p: Product) => void }) {
                     {p.badge}
                   </span>
                 )}
-              </div>
+              </Link>
               <div className="p-5 space-y-3 flex-1 flex flex-col">
                 <div>
-                  <h3 className="font-display text-xl">{p.name}</h3>
+                  <Link to={`/product/${p.id}`}>
+                    <h3 className="font-display text-xl hover:text-accent transition-colors">{p.name}</h3>
+                  </Link>
                   <p className="text-xs text-muted-foreground mt-1">{p.tagline}</p>
                 </div>
                 <div className="flex items-center gap-2 text-xs">

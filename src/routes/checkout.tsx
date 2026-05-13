@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ArrowLeft, ShoppingBag } from "lucide-react";
+import { ArrowLeft, ShoppingBag, CreditCard, Wallet, Banknote } from "lucide-react";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/sections";
 import type { CartItem } from "@/lib/products";
@@ -18,6 +18,7 @@ export default function CheckoutPage() {
     pincode: "",
     country: "India",
     notes: "",
+    paymentMethod: "cod", // cod, card, upi
   });
 
   // Get cart from localStorage
@@ -36,22 +37,23 @@ export default function CheckoutPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Create WhatsApp message
-    const orderDetails = cart.map(item => 
-      `${item.name} x ${item.qty} = ₹${item.price * item.qty}`
-    ).join('\n');
+    // Save order details to localStorage
+    const orderDetails = {
+      ...formData,
+      items: cart,
+      subtotal,
+      shipping: shippingCost,
+      total,
+      orderDate: new Date().toISOString(),
+    };
     
-    const message = `*New Order from Website*\n\n*Customer Details:*\nName: ${formData.firstName} ${formData.lastName}\nEmail: ${formData.email}\nPhone: ${formData.phone}\n\n*Delivery Address:*\n${formData.address}\n${formData.city}, ${formData.state} - ${formData.pincode}\n${formData.country}\n\n*Order Details:*\n${orderDetails}\n\n*Subtotal:* ₹${subtotal}\n*Shipping:* ₹${shippingCost}\n*Total:* ₹${total}\n\n${formData.notes ? `*Notes:* ${formData.notes}` : ''}`;
-    
-    const whatsappUrl = `https://wa.me/917708443362?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, '_blank');
+    localStorage.setItem("lastOrder", JSON.stringify(orderDetails));
     
     // Clear cart
     localStorage.removeItem("cart");
     
-    // Show success message and redirect
-    alert("Thank you! Your order has been sent via WhatsApp. We'll contact you shortly to confirm.");
-    navigate("/");
+    // Redirect to order confirmation
+    navigate("/order-confirmation");
   };
 
   if (cart.length === 0) {
@@ -196,6 +198,59 @@ export default function CheckoutPage() {
                     <option value="Singapore">Singapore</option>
                     <option value="Other">Other</option>
                   </select>
+                </label>
+              </div>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-display mb-4">Payment Method</h2>
+              <div className="space-y-3">
+                <label className="flex items-center gap-3 p-4 rounded-lg border-2 border-border hover:border-accent cursor-pointer transition-colors has-[:checked]:border-accent has-[:checked]:bg-accent/5">
+                  <input
+                    type="radio"
+                    name="paymentMethod"
+                    value="cod"
+                    checked={formData.paymentMethod === "cod"}
+                    onChange={(e) => setFormData({ ...formData, paymentMethod: e.target.value })}
+                    className="h-4 w-4 text-accent"
+                  />
+                  <Banknote className="h-5 w-5 text-accent" />
+                  <div className="flex-1">
+                    <p className="font-medium">Cash on Delivery (COD)</p>
+                    <p className="text-xs text-muted-foreground">Pay when you receive your order</p>
+                  </div>
+                </label>
+
+                <label className="flex items-center gap-3 p-4 rounded-lg border-2 border-border hover:border-accent cursor-pointer transition-colors has-[:checked]:border-accent has-[:checked]:bg-accent/5">
+                  <input
+                    type="radio"
+                    name="paymentMethod"
+                    value="card"
+                    checked={formData.paymentMethod === "card"}
+                    onChange={(e) => setFormData({ ...formData, paymentMethod: e.target.value })}
+                    className="h-4 w-4 text-accent"
+                  />
+                  <CreditCard className="h-5 w-5 text-accent" />
+                  <div className="flex-1">
+                    <p className="font-medium">Credit/Debit Card</p>
+                    <p className="text-xs text-muted-foreground">Visa, Mastercard, Rupay accepted</p>
+                  </div>
+                </label>
+
+                <label className="flex items-center gap-3 p-4 rounded-lg border-2 border-border hover:border-accent cursor-pointer transition-colors has-[:checked]:border-accent has-[:checked]:bg-accent/5">
+                  <input
+                    type="radio"
+                    name="paymentMethod"
+                    value="upi"
+                    checked={formData.paymentMethod === "upi"}
+                    onChange={(e) => setFormData({ ...formData, paymentMethod: e.target.value })}
+                    className="h-4 w-4 text-accent"
+                  />
+                  <Wallet className="h-5 w-5 text-accent" />
+                  <div className="flex-1">
+                    <p className="font-medium">UPI Payment</p>
+                    <p className="text-xs text-muted-foreground">Google Pay, PhonePe, Paytm, etc.</p>
+                  </div>
                 </label>
               </div>
             </section>
