@@ -1,5 +1,5 @@
 import { X, Minus, Plus, Trash2 } from "lucide-react";
-import { Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import type { CartItem } from "@/lib/products";
 
 export function CartDrawer({
