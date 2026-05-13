@@ -31,7 +31,7 @@ export function Navbar() {
     <header className="sticky top-0 z-50 backdrop-blur-md bg-background/80 border-b border-border">
       <div className="container-prose flex h-20 md:h-24 items-center justify-between gap-4">
         <a href="/" className="flex items-center">
-          <img src="/logo.svg" alt="Thiru Annamalai Natural Foods" className="h-16 md:h-20 w-auto mix-blend-multiply scale-125 origin-left object-contain" />
+          <img src="/logo.svg" alt="Thiru Annamalai Natural Foods" className="h-16 md:h-20 w-auto mix-blend-multiply origin-left object-contain" />
         </a>
 
         <nav className="hidden lg:flex items-center gap-7 text-sm">

@@ -1,14 +1,17 @@
-// Using placeholder images - replace with actual product images
-import greenDhal from "@/assets/hero-laddus.jpg";
-import multigrain from "@/assets/product-besan.jpg";
-import multiMillet from "@/assets/product-millet.jpg";
-import blackUrad from "@/assets/product-dryfruit.jpg";
-import peanutLaddu from "@/assets/product-coconut.jpg";
-import gingelly from "@/assets/product-besan.jpg";
-import rye from "@/assets/product-millet.jpg";
-import ragi from "@/assets/product-dryfruit.jpg";
-import thinnai from "@/assets/product-coconut.jpg";
-import wheat from "@/assets/product-besan.jpg";
+import greenDhal from "@/assets/green-dhal-laddu.jpg";
+import multigrain from "@/assets/multigrain-laddu.jpg";
+import multiMillet from "@/assets/multi-millet-laddu.jpg";
+import blackUrad from "@/assets/black-urad-laddu.jpg";
+import peanutLaddu from "@/assets/peanut-laddu.png";
+import gingelly from "@/assets/gingelly-laddu.png";
+import rye from "@/assets/rye-laddu.png";
+import ragi from "@/assets/ragi-laddu.png";
+import thinnai from "@/assets/thinnai-laddu.png";
+import wheat from "@/assets/wheat-laddu.png";
+import nicePeanutBar from "@/assets/nice-peanut-bar.png";
+import gingellyBar from "@/assets/gingelly-bar.png";
+import kamarkat from "@/assets/kamarkat.png";
+import peanutBar from "@/assets/peanut-bar.png";
 
 export type Product = {
   id: string;
@@ -56,7 +59,7 @@ export const products: Product[] = [
   {
     id: "multi-millet",
     name: "Multi Millet Ghee Laddu",
-    tagline: "சிறுதானிய நெய் லட்டு — Ancient millets for wellness",
+    tagline: "சிறு தானிய நெய் லட்டு — Ancient millets for wellness",
     price: 380,
     weight: "500 g",
     ingredients: "Mixed millets, A2 ghee, jaggery, cardamom",
@@ -81,7 +84,7 @@ export const products: Product[] = [
   {
     id: "peanut-laddu",
     name: "Peanut Ghee Laddu",
-    tagline: "கடலை நெய் லட்டு — Crunchy & protein-packed",
+    tagline: "நிலக்கடலை நெய் லட்டு — Crunchy & protein-packed",
     price: 320,
     weight: "500 g",
     ingredients: "Roasted peanuts, A2 ghee, jaggery",
@@ -151,4 +154,54 @@ export const products: Product[] = [
     reviews: 36,
     image: wheat,
   },
+  {
+    id: "nice-peanut-bar",
+    name: "Nice Peanut Bar",
+    tagline: "கொக்கோ மிட்டாய் — Classic Peanut Brittle",
+    price: 300,
+    weight: "800 g",
+    ingredients: "Groundnut, Jaggery, Edible Glucose",
+    shelfLife: "60 days",
+    rating: 4.8,
+    reviews: 42,
+    image: nicePeanutBar,
+    badge: "Traditional",
+  },
+  {
+    id: "gingelly-bar",
+    name: "Gingelly Bar",
+    tagline: "எள்ளு மிட்டாய் — Sesame Seed Brittle",
+    price: 320,
+    weight: "800 g",
+    ingredients: "Gingelly, Peanuts, Jaggery, Edible Glucose",
+    shelfLife: "60 days",
+    rating: 4.7,
+    reviews: 35,
+    image: gingellyBar,
+  },
+  {
+    id: "kamarkat",
+    name: "Kamarkat",
+    tagline: "கமர்கட் — Traditional Coconut Jaggery Candy",
+    price: 320,
+    weight: "800 g",
+    ingredients: "Jaggery, Ajwain, Cardamom",
+    shelfLife: "60 days",
+    rating: 4.9,
+    reviews: 58,
+    image: kamarkat,
+    badge: "Must Try",
+  },
+  {
+    id: "peanut-bar",
+    name: "Peanut Bar",
+    tagline: "கடலை மிட்டாய் — Peanut Brittle",
+    price: 300,
+    weight: "800 g",
+    ingredients: "Peanut, Jaggery, Salt & Cardamom",
+    shelfLife: "60 days",
+    rating: 4.8,
+    reviews: 47,
+    image: peanutBar,
+  }
 ];
