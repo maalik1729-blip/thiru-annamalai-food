@@ -11,7 +11,7 @@ export default function WhyPage() {
     <div className="min-h-screen bg-background flex flex-col">
       <Navbar />
       <div className="flex-1">
-        <WhyUs />
+        <WhyUs hideBottomWave />
       </div>
       <Footer />
     </div>
