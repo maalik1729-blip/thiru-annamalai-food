@@ -456,10 +456,12 @@ export function Contact() {
 export function Footer() {
   return (
     <>
-      <footer 
-        className="text-cream/90 pt-20 pb-8 bg-no-repeat bg-cover bg-top mt-12" 
-        style={{ backgroundImage: "url('/a1aac9d6-e7dd-4f77-a0d4-a5c875994653.png')" }}
-      >
+      <div className="w-full overflow-hidden leading-[0] -mb-[1px]">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" className="w-full block h-auto max-h-[60px] md:max-h-[120px]" preserveAspectRatio="none">
+          <path fill="var(--cocoa)" fillOpacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+        </svg>
+      </div>
+      <footer className="bg-cocoa text-cream/90 pt-10 pb-8" style={{ backgroundColor: "var(--cocoa)" }}>
       <div className="container-prose">
         <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-cream/10">
           <div className="lg:col-span-2">
@@ -503,8 +505,6 @@ export function Footer() {
               <li><a href="/terms-conditions" className="hover:text-accent">Terms & Conditions</a></li>
             </ul>
           </div>
-
-
         </div>
 
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-cream/60">
@@ -519,8 +519,6 @@ export function Footer() {
           </div>
         </div>
       </div>
-
-      
     </footer>
     </>
   );
