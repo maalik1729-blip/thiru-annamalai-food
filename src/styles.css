@@ -98,10 +98,21 @@
   html { scroll-behavior: smooth; }
   body {
     background-color: var(--color-background);
+    background-image: url('/f3f778a9-6e24-4e90-b755-0cd39e8c2fc6.png');
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
   }
+  
+  /* Make the main layout wrapper transparent so the body background image is visible */
+  #root > div {
+    background-color: transparent !important;
+  }
+
   h1, h2, h3, h4, .font-display { font-family: var(--font-display); letter-spacing: -0.01em; }
 }
 
