@@ -98,14 +98,21 @@
   html { scroll-behavior: smooth; }
   body {
     background-color: var(--color-background);
-    background-image: url('/f3f778a9-6e24-4e90-b755-0cd39e8c2fc6.png');
-    background-attachment: fixed;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
+  }
+  
+  /* Use a pseudo-element for the fixed background to fix iOS Safari bugs */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background-image: url('/f3f778a9-6e24-4e90-b755-0cd39e8c2fc6.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
   }
   
   /* Make the main layout wrapper transparent so the body background image is visible */
