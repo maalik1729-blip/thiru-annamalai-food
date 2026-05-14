@@ -130,7 +130,7 @@ export default function TermsConditionsPage() {
             <div className="space-y-2 text-sm">
               <p><strong>Thiru Annamalai Natural Foods</strong></p>
               <p>📍 Flat No - 1760, TNHB Colony, Mela Anuppanadi, Madurai, Tamil Nadu - 625009</p>
-              <p>📞 Phone: <a href="tel:+917708443362" className="text-accent hover:underline">+91 77084 43362</a></p>
+              <p>📞 Phone: <a href="tel:+918300377278" className="text-accent hover:underline">+91 83003 77278</a></p>
               <p>📧 Email: <a href="mailto:thiruannamalainaturalfoods90@gmail.com" className="text-accent hover:underline">thiruannamalainaturalfoods90@gmail.com</a></p>
             </div>
           </section>

@@ -259,7 +259,7 @@ const faqs = [
   { q: "How long do the products stay fresh?", a: "Our products stay fresh for 21–60 days depending on the variety, when stored in a cool dry place. Laddus typically last 30-45 days, while bars can last up to 60 days. Each box lists exact shelf life on the seal." },
   { q: "Do you ship internationally?", a: "Yes! We ship worldwide to USA, Canada, UK, Europe, Middle East, Australia, and many other countries. International delivery takes 5-20 business days depending on destination. All international orders are vacuum-sealed and shipped via DHL/FedEx Express with tracking." },
   { q: "Are your ingredients certified?", a: "Yes — we are FSSAI certified and use only A2 ghee, organic jaggery, and stone-ground flours. Every batch maintains the highest quality standards." },
-  { q: "Do you offer bulk and wedding orders?", a: "Absolutely. We provide custom orders for weddings, festivals, and corporate gifting worldwide. Email thiruannamalainaturalfoods90@gmail.com or WhatsApp +91 77084 43362 for a quote." },
+  { q: "Do you offer bulk and wedding orders?", a: "Absolutely. We provide custom orders for weddings, festivals, and corporate gifting worldwide. Email thiruannamalainaturalfoods90@gmail.com or WhatsApp +91 83003 77278 for a quote." },
 ];
 
 export function FAQ() {
@@ -307,11 +307,11 @@ export function Contact() {
             Whether you're planning a wedding order or curious about our ingredients — we'd love to hear from you.
           </p>
           <div className="space-y-3">
-            <a href="https://wa.me/917708443362" className="flex items-center gap-3 p-4 rounded-xl bg-card border border-border hover:border-accent transition-colors">
+            <a href="https://wa.me/918300377278" className="flex items-center gap-3 p-4 rounded-xl bg-card border border-border hover:border-accent transition-colors">
               <span className="h-10 w-10 grid place-items-center rounded-full bg-[oklch(0.7_0.15_145)] text-white"><MessageCircle className="h-4 w-4" /></span>
               <div>
                 <p className="font-medium text-sm">WhatsApp us</p>
-                <p className="text-xs text-muted-foreground">+91 77084 43362 · 9am–9pm IST</p>
+                <p className="text-xs text-muted-foreground">+91 83003 77278 · 9am–9pm IST</p>
               </div>
             </a>
             <a href="mailto:thiruannamalainaturalfoods90@gmail.com" className="flex items-center gap-3 p-4 rounded-xl bg-card border border-border hover:border-accent transition-colors">
@@ -413,7 +413,7 @@ export function Footer() {
         </div>
 
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-cream/60">
-          <p>© {new Date().getFullYear()} Thiru Annamalai Natural Foods. Flat No - 1760, TNHB Colony, Mela Anuppanadi, Madurai, Tamil Nadu - 625009. Owner: Vijaya Kumar R</p>
+          <p>© 2019 Thiru Annamalai Natural Foods. Flat No - 1760, TNHB Colony, Mela Anuppanadi, Madurai, Tamil Nadu - 625009. Owner: Vijaya Kumar R</p>
           <div className="flex items-center gap-3">
             <span>We accept</span>
             <div className="flex gap-2">

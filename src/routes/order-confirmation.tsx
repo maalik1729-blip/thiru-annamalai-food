@@ -189,8 +189,8 @@ export default function OrderConfirmationPage() {
           <div className="text-center pt-6 text-sm text-muted-foreground">
             <p>
               Need help? Contact us at{" "}
-              <a href="tel:+917708443362" className="text-accent hover:underline">
-                +91 77084 43362
+              <a href="tel:+918300377278" className="text-accent hover:underline">
+                +91 83003 77278
               </a>{" "}
               or{" "}
               <a href="mailto:info@thiruannamalai.com" className="text-accent hover:underline">
