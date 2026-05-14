@@ -1,9 +1,44 @@
-import { Star, Leaf, Hand, ShieldCheck, Plane, CreditCard, Package, MessageCircle, Mail, Instagram, Facebook, Youtube, Plus, Minus } from "lucide-react";
+import { Star, Leaf, Hand, ShieldCheck, Plane, CreditCard, Package, MessageCircle, Mail, Instagram, Facebook, Youtube, Plus, Minus, Heart } from "lucide-react";
 import { useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { products, type Product } from "@/lib/products";
 import { useCurrency } from "@/lib/CurrencyContext";
 import aboutImg from "@/assets/about-tamil-man.png";
+import { toast } from "sonner";
+import React from "react";
+
+export function WishlistButton({ productId, productName }: { productId: string, productName: string }) {
+  const [isWished, setIsWished] = React.useState(false);
+  
+  React.useEffect(() => {
+    const wished = localStorage.getItem(`wishlist_${productId}`);
+    if (wished) setIsWished(true);
+  }, [productId]);
+
+  const toggleWishlist = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (isWished) {
+      localStorage.removeItem(`wishlist_${productId}`);
+      setIsWished(false);
+      toast.success(`Removed ${productName} from wishlist`);
+    } else {
+      localStorage.setItem(`wishlist_${productId}`, "true");
+      setIsWished(true);
+      toast.success(`Added ${productName} to wishlist`);
+    }
+  };
+
+  return (
+    <button 
+      onClick={toggleWishlist}
+      className="absolute top-3 right-3 p-2 rounded-full bg-background/90 backdrop-blur text-foreground hover:text-accent hover:bg-background transition-colors z-10 shadow-sm"
+      aria-label="Toggle wishlist"
+    >
+      <Heart className={`h-4 w-4 ${isWished ? 'fill-accent text-accent' : ''}`} />
+    </button>
+  );
+}
 
 function Stars({ rating }: { rating: number }) {
   return (
@@ -72,21 +107,24 @@ export function ProductsSection({ onAdd }: { onAdd: (p: Product) => void }) {
           ) : (
             filteredProducts.map((p) => (
             <article key={p.id} className="group bg-card rounded-2xl overflow-hidden border border-border hover:shadow-warm transition-all duration-500 flex flex-col">
-              <Link to={`/product/${p.id}`} className="relative aspect-square overflow-hidden bg-secondary block">
-                <img
-                  src={p.image}
-                  alt={p.name}
-                  loading="lazy"
-                  width={896}
-                  height={896}
-                  className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-                {p.badge && (
-                  <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-background/90 backdrop-blur text-[10px] uppercase tracking-wider font-semibold text-primary">
-                    {p.badge}
-                  </span>
-                )}
-              </Link>
+              <div className="relative aspect-square bg-secondary">
+                <Link to={`/product/${p.id}`} className="absolute inset-0 overflow-hidden block">
+                  <img
+                    src={p.image}
+                    alt={p.name}
+                    loading="lazy"
+                    width={896}
+                    height={896}
+                    className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                  {p.badge && (
+                    <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-background/90 backdrop-blur text-[10px] uppercase tracking-wider font-semibold text-primary">
+                      {p.badge}
+                    </span>
+                  )}
+                </Link>
+                <WishlistButton productId={p.id} productName={p.name} />
+              </div>
               <div className="p-5 space-y-3 flex-1 flex flex-col">
                 <div>
                   <Link to={`/product/${p.id}`}>
