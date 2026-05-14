@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Star, ArrowRight, Sparkles } from "lucide-react";
-import heroImg from "@/assets/hero-laddus.jpg";
+import heroImg from "@/assets/1930c90c-a271-4e38-aea3-71a382d67199.png";
 import { Navbar } from "@/components/site/Navbar";
 import { ProductsSection, StorySection, WhyUs, Shipping, Testimonials, Contact, Footer } from "@/components/site/sections";
 import type { Product, CartItem } from "@/lib/products";
