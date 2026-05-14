@@ -184,22 +184,22 @@ const features = [
 export function WhyUs({ hideBottomWave }: { hideBottomWave?: boolean }) {
   return (
     <>
-    <section id="why" className="py-12 md:py-16 bg-primary text-primary-foreground">
+    <section id="why" className="py-12 md:py-16 text-cream/90" style={{ backgroundColor: "var(--cocoa)" }}>
       <div className="container-prose">
         <div className="text-center mb-16">
           <p className="text-sm uppercase tracking-[0.2em] text-accent mb-3">Why Choose Us</p>
-          <h2 className="text-4xl md:text-5xl font-display max-w-2xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-display max-w-2xl mx-auto text-cream">
             Tradition you can taste. Standards you can trust.
           </h2>
         </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-primary-foreground/10 rounded-3xl overflow-hidden">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-cream/10 rounded-3xl overflow-hidden">
           {features.map((f) => (
-            <div key={f.title} className="bg-primary p-8 hover:bg-primary-foreground/5 transition-colors">
+            <div key={f.title} className="p-8 hover:bg-cream/5 transition-colors" style={{ backgroundColor: "var(--cocoa)" }}>
               <div className="h-12 w-12 rounded-full bg-accent/20 grid place-items-center mb-5">
                 <f.icon className="h-5 w-5 text-accent" />
               </div>
-              <h3 className="font-display text-xl mb-2">{f.title}</h3>
-              <p className="text-sm text-primary-foreground/70 leading-relaxed">{f.text}</p>
+              <h3 className="font-display text-xl mb-2 text-cream">{f.title}</h3>
+              <p className="text-sm text-cream/70 leading-relaxed">{f.text}</p>
             </div>
           ))}
         </div>
@@ -208,7 +208,7 @@ export function WhyUs({ hideBottomWave }: { hideBottomWave?: boolean }) {
     {!hideBottomWave && (
       <div className="w-full overflow-hidden leading-[0] -mt-[1px] rotate-180">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" className="w-full block h-auto max-h-[60px] md:max-h-[120px]" preserveAspectRatio="none">
-          <path fill="var(--primary)" fillOpacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+          <path fill="var(--cocoa)" fillOpacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
         </svg>
       </div>
     )}
