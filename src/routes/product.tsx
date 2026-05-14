@@ -181,14 +181,12 @@ export default function ProductDetailsPage() {
           <h2 className="text-3xl font-display mb-6">About This Product</h2>
           <div className="prose prose-lg">
             <p className="text-muted-foreground leading-relaxed">
-              {product.name} is crafted using traditional methods passed down through generations. 
+              {product.name} is an authentic South Indian delicacy crafted using traditional methods passed down through generations. 
               Made with premium quality ingredients including {product.ingredients.toLowerCase()}, 
-              each piece is carefully handmade to ensure authentic taste and texture.
+              each piece is carefully handmade to ensure the perfect taste and texture.
             </p>
             <p className="text-muted-foreground leading-relaxed mt-4">
-              Our products contain no artificial preservatives, colors, or flavors. We use only 
-              natural ingredients, A2 ghee, and jaggery to create healthy snacks that you can 
-              enjoy guilt-free. Perfect for festivals, gifting, or as a daily nutritious snack.
+              We take pride in our zero-compromise approach to quality. This product contains absolutely no artificial preservatives, colors, or flavors. We use only 100% natural ingredients to create healthy, traditional snacks that you can enjoy guilt-free. Perfect for festivals, gifting, or as a daily nutritious snack for the whole family.
             </p>
           </div>
         </div>
