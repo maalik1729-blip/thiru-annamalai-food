@@ -74,12 +74,14 @@ export default function HomePage() {
 
         {/* Marquee */}
         <div className="border-y border-border bg-cream/40 py-5 overflow-hidden">
-          <div className="container-prose flex flex-wrap items-center justify-around gap-x-10 gap-y-3 text-xs uppercase tracking-[0.2em] text-muted-foreground">
-            <span>FSSAI Certified</span><span className="text-accent">·</span>
-            <span>No Preservatives</span><span className="text-accent">·</span>
-            <span>A2 Ghee Only</span><span className="text-accent">·</span>
-            <span>Fair Trade</span><span className="text-accent">·</span>
-            <span>Ships in 24h</span>
+          <div className="container-prose">
+            <div className="flex overflow-x-auto items-center justify-start lg:justify-around gap-8 lg:gap-10 text-xs uppercase tracking-[0.2em] text-muted-foreground whitespace-nowrap pb-2 lg:pb-0 -mb-2 lg:mb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+              <span>FSSAI Certified</span><span className="text-accent shrink-0">·</span>
+              <span>No Preservatives</span><span className="text-accent shrink-0">·</span>
+              <span>A2 Ghee Only</span><span className="text-accent shrink-0">·</span>
+              <span>Fair Trade</span><span className="text-accent shrink-0">·</span>
+              <span>Ships in 24h</span>
+            </div>
           </div>
         </div>
       </section>
