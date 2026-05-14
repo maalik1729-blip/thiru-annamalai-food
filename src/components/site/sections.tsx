@@ -1,6 +1,6 @@
 import { Star, Leaf, Hand, ShieldCheck, Plane, CreditCard, Package, MessageCircle, Mail, Instagram, Facebook, Youtube, Plus, Minus } from "lucide-react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { products, type Product } from "@/lib/products";
 import { useCurrency } from "@/lib/CurrencyContext";
 import aboutImg from "@/assets/about-tamil-man.png";
@@ -20,10 +20,28 @@ function Stars({ rating }: { rating: number }) {
 
 export function ProductsSection({ onAdd }: { onAdd: (p: Product) => void }) {
   const { formatPrice } = useCurrency();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const category = searchParams.get("category") || "all";
+
+  const filteredProducts = products.filter(p => {
+    if (category === "all") return true;
+    if (category === "laddus") return p.name.toLowerCase().includes("laddu");
+    if (category === "bars") return p.name.toLowerCase().includes("bar") || p.id === "kamarkat";
+    if (category === "gift-boxes") return p.id.includes("gift");
+    return true;
+  });
+
+  const categories = [
+    { id: "all", label: "All products" },
+    { id: "laddus", label: "Laddus" },
+    { id: "bars", label: "Bars & Snacks" },
+    { id: "gift-boxes", label: "Gift boxes" },
+  ];
+
   return (
     <section id="shop" className="py-24 bg-gradient-to-b from-background to-cream/40">
       <div className="container-prose">
-        <div className="flex items-end justify-between mb-12 flex-wrap gap-4">
+        <div className="flex items-end justify-between mb-8 flex-wrap gap-4">
           <div>
             <p className="text-sm uppercase tracking-[0.2em] text-accent font-medium mb-2">The Collection</p>
             <h2 className="text-4xl md:text-5xl font-display max-w-xl">Premium laddus, bars & healthy snacks, handmade daily.</h2>
@@ -33,8 +51,29 @@ export function ProductsSection({ onAdd }: { onAdd: (p: Product) => void }) {
           </p>
         </div>
 
+        <div className="flex flex-wrap gap-2 mb-8">
+          {categories.map(c => (
+            <button
+              key={c.id}
+              onClick={() => setSearchParams({ category: c.id }, { replace: true })}
+              className={`px-5 py-2 rounded-full text-sm font-medium transition-colors ${
+                category === c.id 
+                  ? "bg-accent text-accent-foreground" 
+                  : "bg-background border border-border text-foreground hover:bg-secondary"
+              }`}
+            >
+              {c.label}
+            </button>
+          ))}
+        </div>
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {products.map((p) => (
+          {filteredProducts.length === 0 ? (
+            <div className="col-span-full py-12 text-center text-muted-foreground bg-white/50 rounded-2xl border border-dashed border-border">
+              No products found in this category yet. Please check back later!
+            </div>
+          ) : (
+            filteredProducts.map((p) => (
             <article key={p.id} className="group bg-card rounded-2xl overflow-hidden border border-border hover:shadow-warm transition-all duration-500 flex flex-col">
               <Link to={`/product/${p.id}`} className="relative aspect-square overflow-hidden bg-secondary block">
                 <img
@@ -384,10 +423,10 @@ export function Footer() {
           <div>
             <h4 className="text-sm font-semibold text-cream mb-4">Shop</h4>
             <ul className="space-y-2 text-sm text-cream/70">
-              <li><a href="/shop" className="hover:text-accent">All products</a></li>
-              <li><a href="/shop" className="hover:text-accent">Laddus</a></li>
-              <li><a href="/shop" className="hover:text-accent">Bars & Snacks</a></li>
-              <li><a href="/shop" className="hover:text-accent">Gift boxes</a></li>
+              <li><a href="/shop?category=all" className="hover:text-accent">All products</a></li>
+              <li><a href="/shop?category=laddus" className="hover:text-accent">Laddus</a></li>
+              <li><a href="/shop?category=bars" className="hover:text-accent">Bars & Snacks</a></li>
+              <li><a href="/shop?category=gift-boxes" className="hover:text-accent">Gift boxes</a></li>
             </ul>
           </div>
 
