@@ -126,21 +126,12 @@ export function ProductsSection({ onAdd }: { onAdd: (p: Product) => void }) {
   return (
     <section id="shop" className="py-12 md:py-16 bg-gradient-to-b from-background to-cream/40">
       <div className="container-prose">
-        <div className="flex flex-col md:flex-row md:items-center gap-8 mb-8">
-          <div className="max-w-2xl flex-1">
-            <p className="text-sm uppercase tracking-[0.2em] text-accent font-medium mb-2">The Collection</p>
-            <h2 className="text-4xl md:text-5xl font-display mb-4">Premium laddus, bars &amp; healthy snacks, handmade daily.</h2>
-            <p className="text-muted-foreground text-lg">
-              Made fresh daily in our Madurai kitchen. Each product crafted with traditional recipes and natural ingredients.
-            </p>
-          </div>
-          <div className="shrink-0 md:ml-auto">
-            <img 
-              src="/17c3f422-6f89-459e-b083-5c75c3633f82.png" 
-              alt="Decorative shop illustration" 
-              className="w-40 h-40 md:w-56 md:h-56 object-contain" 
-            />
-          </div>
+        <div className="mb-8 max-w-2xl">
+          <p className="text-sm uppercase tracking-[0.2em] text-accent font-medium mb-2">The Collection</p>
+          <h2 className="text-4xl md:text-5xl font-display mb-4">Premium laddus, bars & healthy snacks, handmade daily.</h2>
+          <p className="text-muted-foreground text-lg">
+            Made fresh daily in our Madurai kitchen. Each product crafted with traditional recipes and natural ingredients.
+          </p>
         </div>
 
         <div className="flex flex-wrap gap-2 mb-8">
