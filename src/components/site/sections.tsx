@@ -117,7 +117,7 @@ export function ProductsSection({ onAdd }: { onAdd: (p: Product) => void }) {
                 </div>
               </div>
             </article>
-          ))}
+          )))}
         </div>
       </div>
     </section>
