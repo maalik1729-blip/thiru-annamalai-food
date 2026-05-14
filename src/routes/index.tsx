@@ -74,14 +74,16 @@ export default function HomePage() {
 
         {/* Marquee */}
         <div className="border-y border-border bg-cream/40 py-5 overflow-hidden">
-          <div className="container-prose">
-            <div className="flex overflow-x-auto items-center justify-start lg:justify-around gap-8 lg:gap-10 text-xs uppercase tracking-[0.2em] text-muted-foreground whitespace-nowrap pb-2 lg:pb-0 -mb-2 lg:mb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-              <span>FSSAI Certified</span><span className="text-accent shrink-0">·</span>
-              <span>No Preservatives</span><span className="text-accent shrink-0">·</span>
-              <span>A2 Ghee Only</span><span className="text-accent shrink-0">·</span>
-              <span>Fair Trade</span><span className="text-accent shrink-0">·</span>
-              <span>Ships in 24h</span>
-            </div>
+          <div className="flex w-max animate-marquee items-center text-xs uppercase tracking-[0.2em] text-muted-foreground whitespace-nowrap hover:[animation-play-state:paused]">
+            {[...Array(4)].map((_, i) => (
+              <div key={i} className="flex items-center gap-8 lg:gap-10 px-4 lg:px-5">
+                <span>FSSAI Certified</span><span className="text-accent shrink-0">·</span>
+                <span>No Preservatives</span><span className="text-accent shrink-0">·</span>
+                <span>A2 Ghee Only</span><span className="text-accent shrink-0">·</span>
+                <span>Fair Trade</span><span className="text-accent shrink-0">·</span>
+                <span>Ships in 24h</span><span className="text-accent shrink-0">·</span>
+              </div>
+            ))}
           </div>
         </div>
       </section>
