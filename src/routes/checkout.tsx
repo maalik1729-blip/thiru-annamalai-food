@@ -87,7 +87,7 @@ export default function CheckoutPage() {
 
         <div className="grid lg:grid-cols-[1fr_400px] gap-12">
           {/* Checkout Form */}
-          <form onSubmit={handleSubmit} className="space-y-8">
+          <form id="checkout-form" onSubmit={handleSubmit} className="space-y-8">
             <section>
               <h2 className="text-2xl font-display mb-4">Contact Information</h2>
               <div className="grid sm:grid-cols-2 gap-4">
@@ -309,12 +309,6 @@ export default function CheckoutPage() {
               <button
                 type="submit"
                 form="checkout-form"
-                onClick={(e) => {
-                  const form = document.querySelector('form');
-                  if (form) {
-                    form.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
-                  }
-                }}
                 className="w-full h-12 rounded-full bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors mt-6"
               >
                 Place Order via WhatsApp
