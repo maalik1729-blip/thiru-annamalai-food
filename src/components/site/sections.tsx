@@ -384,19 +384,19 @@ export function Footer() {
           <div>
             <h4 className="text-sm font-semibold text-cream mb-4">Shop</h4>
             <ul className="space-y-2 text-sm text-cream/70">
-              <li><a href="#shop" className="hover:text-accent">All products</a></li>
-              <li><a href="#shop" className="hover:text-accent">Laddus</a></li>
-              <li><a href="#shop" className="hover:text-accent">Bars & Snacks</a></li>
-              <li><a href="#shop" className="hover:text-accent">Gift boxes</a></li>
+              <li><a href="/shop" className="hover:text-accent">All products</a></li>
+              <li><a href="/shop" className="hover:text-accent">Laddus</a></li>
+              <li><a href="/shop" className="hover:text-accent">Bars & Snacks</a></li>
+              <li><a href="/shop" className="hover:text-accent">Gift boxes</a></li>
             </ul>
           </div>
 
           <div>
             <h4 className="text-sm font-semibold text-cream mb-4">Company</h4>
             <ul className="space-y-2 text-sm text-cream/70">
-              <li><a href="#story" className="hover:text-accent">Our story</a></li>
-              <li><a href="#shipping" className="hover:text-accent">Shipping</a></li>
-              <li><a href="#contact" className="hover:text-accent">Contact</a></li>
+              <li><a href="/#story" className="hover:text-accent">Our story</a></li>
+              <li><a href="/#shipping" className="hover:text-accent">Shipping</a></li>
+              <li><a href="/#contact" className="hover:text-accent">Contact</a></li>
               <li><a href="#" className="hover:text-accent">Wholesale</a></li>
             </ul>
           </div>

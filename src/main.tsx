@@ -17,6 +17,7 @@ import PrivacyPolicyPage from './routes/privacy-policy';
 import TermsConditionsPage from './routes/terms-conditions';
 import ShippingPolicyPage from './routes/shipping-policy';
 import CancellationRefundPage from './routes/cancellation-refund';
+import ShopPage from './routes/shop';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -46,6 +47,7 @@ function AppContent() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/shop" element={<ShopPage />} />
         <Route path="/product/:id" element={<ProductDetailsPage />} />
         <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="/order-confirmation" element={<OrderConfirmationPage />} />

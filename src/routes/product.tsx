@@ -28,7 +28,7 @@ export default function ProductDetailsPage() {
         <Navbar />
         <div className="container-prose py-20 text-center">
           <h1 className="text-3xl font-display mb-4">Product not found</h1>
-          <Link to="/" className="text-accent hover:underline">
+          <Link to="/shop" className="text-accent hover:underline">
             Back to Shop
           </Link>
         </div>
@@ -50,7 +50,7 @@ export default function ProductDetailsPage() {
       <Navbar />
       
       <div className="container-prose py-12">
-        <Link to="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-accent mb-8">
+        <Link to="/shop" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-accent mb-8">
           <ArrowLeft className="h-4 w-4" />
           Back to Shop
         </Link>

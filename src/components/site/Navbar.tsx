@@ -5,7 +5,7 @@ import { CurrencySelector } from "./CurrencySelector";
 import { useCart } from "@/lib/CartContext";
 
 const links = [
-  { href: "#shop", label: "Shop" },
+  { href: "/shop", label: "Shop" },
   { href: "#story", label: "Our Story" },
   { href: "#why", label: "Why Us" },
   { href: "#shipping", label: "Shipping" },
@@ -20,9 +20,15 @@ export function Navbar() {
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     // If we're not on the home page, navigate to home page with hash
-    if (location.pathname !== "/") {
+    if (location.pathname !== "/" && href.startsWith("#")) {
       e.preventDefault();
       navigate("/" + href);
+      setOpen(false);
+    } else if (location.pathname !== href && !href.startsWith("#")) {
+      e.preventDefault();
+      navigate(href);
+      setOpen(false);
+    } else {
       setOpen(false);
     }
   };
