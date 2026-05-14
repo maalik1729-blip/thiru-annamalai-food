@@ -29,7 +29,7 @@ export default function HomePage() {
               <a href="/shop" className="inline-flex items-center gap-2 h-12 px-7 rounded-full bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-all hover:gap-3">
                 Shop Now <ArrowRight className="h-4 w-4" />
               </a>
-              <a href="#story" className="inline-flex items-center gap-2 h-12 px-7 rounded-full border border-border bg-background hover:bg-secondary transition-colors font-medium">
+              <a href="/story" className="inline-flex items-center gap-2 h-12 px-7 rounded-full border border-border bg-background hover:bg-secondary transition-colors font-medium">
                 Explore Our Story
               </a>
             </div>
@@ -83,8 +83,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-
+      <ProductsSection onAdd={addToCart} />
       <StorySection />
       <WhyUs />
       <Shipping />

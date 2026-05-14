@@ -6,10 +6,10 @@ import { useCart } from "@/lib/CartContext";
 
 const links = [
   { href: "/shop", label: "Shop" },
-  { href: "#story", label: "Our Story" },
-  { href: "#why", label: "Why Us" },
-  { href: "#shipping", label: "Shipping" },
-  { href: "#contact", label: "Contact" },
+  { href: "/story", label: "Our Story" },
+  { href: "/why", label: "Why Us" },
+  { href: "/shipping", label: "Shipping" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export function Navbar() {
@@ -19,18 +19,11 @@ export function Navbar() {
   const navigate = useNavigate();
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    // If we're not on the home page, navigate to home page with hash
-    if (location.pathname !== "/" && href.startsWith("#")) {
-      e.preventDefault();
-      navigate("/" + href);
-      setOpen(false);
-    } else if (location.pathname !== href && !href.startsWith("#")) {
+    if (location.pathname !== href) {
       e.preventDefault();
       navigate(href);
-      setOpen(false);
-    } else {
-      setOpen(false);
     }
+    setOpen(false);
   };
 
   return (

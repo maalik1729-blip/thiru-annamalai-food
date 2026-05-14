@@ -18,6 +18,10 @@ import TermsConditionsPage from './routes/terms-conditions';
 import ShippingPolicyPage from './routes/shipping-policy';
 import CancellationRefundPage from './routes/cancellation-refund';
 import ShopPage from './routes/shop';
+import StoryPage from './routes/story';
+import WhyPage from './routes/why';
+import ShippingPage from './routes/shipping';
+import ContactPage from './routes/contact';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -48,6 +52,10 @@ function AppContent() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/shop" element={<ShopPage />} />
+        <Route path="/story" element={<StoryPage />} />
+        <Route path="/why" element={<WhyPage />} />
+        <Route path="/shipping" element={<ShippingPage />} />
+        <Route path="/contact" element={<ContactPage />} />
         <Route path="/product/:id" element={<ProductDetailsPage />} />
         <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="/order-confirmation" element={<OrderConfirmationPage />} />
