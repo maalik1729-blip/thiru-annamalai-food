@@ -38,11 +38,8 @@ export default function ProductDetailsPage() {
   }
 
   const handleAddToCart = () => {
-    addToCart({ ...product });
+    addToCart(product, quantity);
     toast.success(`Added ${quantity} ${product.name} to cart!`);
-    
-    // Redirect to checkout
-    setTimeout(() => navigate("/checkout"), 500);
   };
 
   return (

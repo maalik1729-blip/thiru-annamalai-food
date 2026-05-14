@@ -5,7 +5,7 @@ interface CartContextType {
   cart: CartItem[];
   cartOpen: boolean;
   setCartOpen: (open: boolean) => void;
-  addToCart: (product: Product) => void;
+  addToCart: (product: Product, qtyToAdd?: number) => void;
   updateQty: (id: string, qty: number) => void;
   remove: (id: string) => void;
   cartCount: number;
@@ -27,11 +27,11 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
-  const addToCart = (p: Product) => {
+  const addToCart = (p: Product, qtyToAdd: number = 1) => {
     setCart((prev) => {
       const exists = prev.find((i) => i.id === p.id);
-      if (exists) return prev.map((i) => (i.id === p.id ? { ...i, qty: i.qty + 1 } : i));
-      return [...prev, { ...p, qty: 1 }];
+      if (exists) return prev.map((i) => (i.id === p.id ? { ...i, qty: i.qty + qtyToAdd } : i));
+      return [...prev, { ...p, qty: qtyToAdd }];
     });
     setCartOpen(true);
   };
