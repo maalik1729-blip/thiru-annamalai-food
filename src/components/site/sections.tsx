@@ -40,6 +40,57 @@ export function WishlistButton({ productId, productName }: { productId: string, 
   );
 }
 
+export function ProductCard({ p, onAdd, formatPrice }: { p: Product, onAdd: (p: Product) => void, formatPrice: (n: number) => string }) {
+  return (
+    <article className="group bg-card rounded-2xl overflow-hidden border border-border hover:shadow-warm transition-all duration-500 flex flex-col">
+      <div className="relative aspect-square bg-secondary">
+        <Link to={`/product/${p.id}`} className="absolute inset-0 overflow-hidden block">
+          <img
+            src={p.image}
+            alt={p.name}
+            loading="lazy"
+            width={896}
+            height={896}
+            className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700"
+          />
+          {p.badge && (
+            <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-background/90 backdrop-blur text-[10px] uppercase tracking-wider font-semibold text-primary">
+              {p.badge}
+            </span>
+          )}
+        </Link>
+        <WishlistButton productId={p.id} productName={p.name} />
+      </div>
+      <div className="p-5 space-y-3 flex-1 flex flex-col">
+        <div>
+          <Link to={`/product/${p.id}`}>
+            <h3 className="font-display text-xl hover:text-accent transition-colors">{p.name}</h3>
+          </Link>
+          <p className="text-xs text-muted-foreground mt-1">{p.tagline}</p>
+        </div>
+        <div className="flex items-center gap-2 text-xs">
+          <Stars rating={p.rating} />
+          <span className="text-muted-foreground">{p.rating} · {p.reviews}</span>
+        </div>
+        <ul className="text-xs text-muted-foreground space-y-1 pt-2 border-t border-border flex-1">
+          <li><span className="text-foreground/70">Weight:</span> {p.weight}</li>
+          <li><span className="text-foreground/70">Shelf life:</span> {p.shelfLife}</li>
+          <li className="line-clamp-2"><span className="text-foreground/70">Made with:</span> {p.ingredients}</li>
+        </ul>
+        <div className="flex items-center justify-between pt-2 mt-auto">
+          <span className="font-display text-2xl">{formatPrice(p.price)}</span>
+          <button
+            onClick={() => onAdd(p)}
+            className="px-4 h-9 rounded-full bg-primary text-primary-foreground text-xs font-medium hover:bg-accent hover:text-accent-foreground transition-colors active:scale-95"
+          >
+            Add to cart
+          </button>
+        </div>
+      </div>
+    </article>
+  );
+}
+
 function Stars({ rating }: { rating: number }) {
   return (
     <div className="flex items-center gap-0.5">
@@ -106,53 +157,9 @@ export function ProductsSection({ onAdd }: { onAdd: (p: Product) => void }) {
             </div>
           ) : (
             filteredProducts.map((p) => (
-            <article key={p.id} className="group bg-card rounded-2xl overflow-hidden border border-border hover:shadow-warm transition-all duration-500 flex flex-col">
-              <div className="relative aspect-square bg-secondary">
-                <Link to={`/product/${p.id}`} className="absolute inset-0 overflow-hidden block">
-                  <img
-                    src={p.image}
-                    alt={p.name}
-                    loading="lazy"
-                    width={896}
-                    height={896}
-                    className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  />
-                  {p.badge && (
-                    <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-background/90 backdrop-blur text-[10px] uppercase tracking-wider font-semibold text-primary">
-                      {p.badge}
-                    </span>
-                  )}
-                </Link>
-                <WishlistButton productId={p.id} productName={p.name} />
-              </div>
-              <div className="p-5 space-y-3 flex-1 flex flex-col">
-                <div>
-                  <Link to={`/product/${p.id}`}>
-                    <h3 className="font-display text-xl hover:text-accent transition-colors">{p.name}</h3>
-                  </Link>
-                  <p className="text-xs text-muted-foreground mt-1">{p.tagline}</p>
-                </div>
-                <div className="flex items-center gap-2 text-xs">
-                  <Stars rating={p.rating} />
-                  <span className="text-muted-foreground">{p.rating} · {p.reviews}</span>
-                </div>
-                <ul className="text-xs text-muted-foreground space-y-1 pt-2 border-t border-border flex-1">
-                  <li><span className="text-foreground/70">Weight:</span> {p.weight}</li>
-                  <li><span className="text-foreground/70">Shelf life:</span> {p.shelfLife}</li>
-                  <li className="line-clamp-2"><span className="text-foreground/70">Made with:</span> {p.ingredients}</li>
-                </ul>
-                <div className="flex items-center justify-between pt-2 mt-auto">
-                  <span className="font-display text-2xl">{formatPrice(p.price)}</span>
-                  <button
-                    onClick={() => onAdd(p)}
-                    className="px-4 h-9 rounded-full bg-primary text-primary-foreground text-xs font-medium hover:bg-accent hover:text-accent-foreground transition-colors active:scale-95"
-                  >
-                    Add to cart
-                  </button>
-                </div>
-              </div>
-            </article>
-          )))}
+              <ProductCard key={p.id} p={p} onAdd={onAdd} formatPrice={formatPrice} />
+            ))
+          )}
         </div>
       </div>
     </section>

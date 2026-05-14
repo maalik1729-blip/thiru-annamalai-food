@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { ArrowLeft, Star, ShoppingBag, Minus, Plus, Package, Clock, Leaf, Award } from "lucide-react";
 import { Navbar } from "@/components/site/Navbar";
-import { Footer } from "@/components/site/sections";
+import { Footer, ProductCard } from "@/components/site/sections";
 import { products } from "@/lib/products";
 import { useCurrency } from "@/lib/CurrencyContext";
 import { useCart } from "@/lib/CartContext";
@@ -16,6 +16,7 @@ export default function ProductDetailsPage() {
   const [quantity, setQuantity] = useState(1);
   
   const product = products.find(p => p.id === id);
+  const relatedProducts = products.filter(p => p.id !== id).slice(0, 4);
 
   // Scroll to top when component mounts or product changes
   useEffect(() => {
@@ -191,6 +192,18 @@ export default function ProductDetailsPage() {
           </div>
         </div>
       </div>
+
+      {/* Related Products */}
+      <section className="border-t border-border bg-cream/30 py-16">
+        <div className="container-prose">
+          <h2 className="text-3xl font-display mb-8">You might also like</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {relatedProducts.map((p) => (
+              <ProductCard key={p.id} p={p} onAdd={(prod) => addToCart(prod, 1)} formatPrice={formatPrice} />
+            ))}
+          </div>
+        </div>
+      </section>
 
       <Footer />
     </div>
