@@ -35,7 +35,6 @@ export function ProductsSection({ onAdd }: { onAdd: (p: Product) => void }) {
     { id: "all", label: "All products" },
     { id: "laddus", label: "Laddus" },
     { id: "bars", label: "Bars & Snacks" },
-    { id: "gift-boxes", label: "Gift boxes" },
   ];
 
   return (
@@ -426,7 +425,6 @@ export function Footer() {
               <li><a href="/shop?category=all" className="hover:text-accent">All products</a></li>
               <li><a href="/shop?category=laddus" className="hover:text-accent">Laddus</a></li>
               <li><a href="/shop?category=bars" className="hover:text-accent">Bars & Snacks</a></li>
-              <li><a href="/shop?category=gift-boxes" className="hover:text-accent">Gift boxes</a></li>
             </ul>
           </div>
 
