@@ -40,12 +40,10 @@ export function ProductsSection({ onAdd }: { onAdd: (p: Product) => void }) {
   return (
     <section id="shop" className="py-12 md:py-16 bg-gradient-to-b from-background to-cream/40">
       <div className="container-prose">
-        <div className="flex items-end justify-between mb-8 flex-wrap gap-4">
-          <div>
-            <p className="text-sm uppercase tracking-[0.2em] text-accent font-medium mb-2">The Collection</p>
-            <h2 className="text-4xl md:text-5xl font-display max-w-xl">Premium laddus, bars & healthy snacks, handmade daily.</h2>
-          </div>
-          <p className="text-muted-foreground max-w-sm">
+        <div className="mb-8 max-w-2xl">
+          <p className="text-sm uppercase tracking-[0.2em] text-accent font-medium mb-2">The Collection</p>
+          <h2 className="text-4xl md:text-5xl font-display mb-4">Premium laddus, bars & healthy snacks, handmade daily.</h2>
+          <p className="text-muted-foreground text-lg">
             Made fresh daily in our Madurai kitchen. Each product crafted with traditional recipes and natural ingredients.
           </p>
         </div>
