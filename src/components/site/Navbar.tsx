@@ -30,8 +30,8 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-50 backdrop-blur-md bg-background/80 border-b border-border">
       <div className="container-prose flex h-20 md:h-24 items-center justify-between gap-4">
-        <a href="/" className="flex items-center justify-center w-40 md:w-48 h-14 md:h-16 overflow-hidden shrink-0">
-          <img src="/thiru_annamalai_logo.svg" alt="Thiru Annamalai Natural Foods" className="w-full h-full object-cover" />
+        <a href="/" className="flex items-center relative w-40 md:w-48 h-14 md:h-16 shrink-0">
+          <img src="/thiru_annamalai_logo.svg" alt="Thiru Annamalai Natural Foods" className="absolute -left-4 md:-left-6 top-1/2 -translate-y-1/2 w-[220px] md:w-[260px] max-w-none object-contain pointer-events-none" />
         </a>
 
         <nav className="hidden lg:flex items-center gap-7 text-sm">
