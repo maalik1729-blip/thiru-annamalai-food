@@ -70,7 +70,7 @@ export function ProductCard({ p, onAdd, formatPrice }: { p: Product, onAdd: (p: 
         </div>
         <div className="flex items-center gap-2 text-xs">
           <Stars rating={p.rating} />
-          <span className="text-muted-foreground">{p.rating} · {p.reviews}</span>
+          <span className="text-muted-foreground">{p.rating}</span>
         </div>
         <ul className="text-xs text-muted-foreground space-y-1 pt-2 border-t border-border flex-1">
           <li><span className="text-foreground/70">Weight:</span> {p.weight}</li>

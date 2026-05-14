@@ -90,7 +90,7 @@ export default function ProductDetailsPage() {
                   ))}
                 </div>
                 <span className="text-sm text-muted-foreground">
-                  {product.rating} ({product.reviews} reviews)
+                  {product.rating}
                 </span>
               </div>
 
