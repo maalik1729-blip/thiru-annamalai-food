@@ -370,7 +370,7 @@ export function Footer() {
         <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-cream/10">
           <div className="lg:col-span-2">
             <div className="mb-6 inline-block bg-white/95 p-4 rounded-2xl shadow-soft">
-              <img src="/logo.svg" alt="Thiru Annamalai Natural Foods" className="h-20 sm:h-24 w-auto object-contain origin-left" />
+              <img src="/thiru_annamalai_logo.svg" alt="Thiru Annamalai Natural Foods" className="h-20 sm:h-24 w-auto object-contain origin-left" />
             </div>
             <p className="text-sm text-cream/70 max-w-sm leading-relaxed mb-5">
               Handmade laddus, peanut bars, gingelly bars, and kamarkat from Madurai, Tamil Nadu. Healthy in Every Piece of Bite.

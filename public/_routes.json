@@ -3,7 +3,7 @@
   "include": ["/*"],
   "exclude": [
     "/favicon.svg",
-    "/logo.svg",
+    "/thiru_annamalai_logo.svg",
     "/assets/*"
   ]
 }

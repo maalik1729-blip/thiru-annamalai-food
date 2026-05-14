@@ -30,7 +30,7 @@ export function Navbar() {
     <header className="sticky top-0 z-50 backdrop-blur-md bg-background/80 border-b border-border">
       <div className="container-prose flex h-20 md:h-24 items-center justify-between gap-4">
         <a href="/" className="flex items-center bg-white/95 px-3 py-1.5 rounded-xl shadow-soft">
-          <img src="/logo.svg" alt="Thiru Annamalai Natural Foods" className="h-14 md:h-16 w-auto origin-left object-contain" />
+          <img src="/thiru_annamalai_logo.svg" alt="Thiru Annamalai Natural Foods" className="h-14 md:h-16 w-auto origin-left object-contain" />
         </a>
 
         <nav className="hidden lg:flex items-center gap-7 text-sm">
