@@ -38,7 +38,7 @@ export function ProductsSection({ onAdd }: { onAdd: (p: Product) => void }) {
   ];
 
   return (
-    <section id="shop" className="py-24 bg-gradient-to-b from-background to-cream/40">
+    <section id="shop" className="py-12 md:py-16 bg-gradient-to-b from-background to-cream/40">
       <div className="container-prose">
         <div className="flex items-end justify-between mb-8 flex-wrap gap-4">
           <div>
@@ -125,7 +125,7 @@ export function ProductsSection({ onAdd }: { onAdd: (p: Product) => void }) {
 
 export function StorySection() {
   return (
-    <section id="story" className="py-24">
+    <section id="story" className="py-12 md:py-16">
       <div className="container-prose grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
         <div className="relative">
           <img
@@ -185,7 +185,7 @@ const features = [
 
 export function WhyUs() {
   return (
-    <section id="why" className="py-24 bg-primary text-primary-foreground">
+    <section id="why" className="py-12 md:py-16 bg-primary text-primary-foreground">
       <div className="container-prose">
         <div className="text-center mb-16">
           <p className="text-sm uppercase tracking-[0.2em] text-accent mb-3">Why Choose Us</p>
@@ -223,7 +223,7 @@ const shipping = [
 export function Shipping() {
   const { formatPrice } = useCurrency();
   return (
-    <section id="shipping" className="py-24">
+    <section id="shipping" className="py-12 md:py-16">
       <div className="container-prose">
         <div className="grid lg:grid-cols-[1fr_1.4fr] gap-12 items-start">
           <div>
@@ -265,7 +265,7 @@ const testimonials = [
 
 export function Testimonials() {
   return (
-    <section className="py-24 bg-cream/50">
+    <section className="py-12 md:py-16 bg-cream/50">
       <div className="container-prose">
         <div className="text-center mb-14">
           <p className="text-sm uppercase tracking-[0.2em] text-accent font-medium mb-3">Customer Reviews</p>
@@ -303,7 +303,7 @@ const faqs = [
 export function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
   return (
-    <section id="faq" className="py-24">
+    <section id="faq" className="py-12 md:py-16">
       <div className="container-prose max-w-3xl">
         <div className="text-center mb-12">
           <p className="text-sm uppercase tracking-[0.2em] text-accent font-medium mb-3">Questions</p>
@@ -334,7 +334,7 @@ export function FAQ() {
 
 export function Contact() {
   return (
-    <section id="contact" className="py-24 bg-cream/50">
+    <section id="contact" className="py-12 md:py-16 bg-cream/50">
       <div className="container-prose grid lg:grid-cols-2 gap-12">
         <div>
           <p className="text-sm uppercase tracking-[0.2em] text-accent font-medium mb-3">Talk to us</p>
