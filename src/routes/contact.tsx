@@ -10,7 +10,7 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <Navbar />
-      <div className="flex-1 pt-10">
+      <div className="flex-1">
         <Contact />
       </div>
       <Footer />

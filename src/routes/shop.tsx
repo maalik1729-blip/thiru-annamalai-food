@@ -13,7 +13,7 @@ export default function ShopPage() {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <Navbar />
-      <div className="flex-1 pt-10">
+      <div className="flex-1">
         <ProductsSection onAdd={addToCart} />
       </div>
       <Footer />

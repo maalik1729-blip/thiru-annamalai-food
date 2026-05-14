@@ -10,7 +10,7 @@ export default function WhyPage() {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <Navbar />
-      <div className="flex-1 pt-10">
+      <div className="flex-1">
         <WhyUs />
       </div>
       <Footer />
