@@ -65,7 +65,7 @@ function AppContent() {
         <Route path="/cancellation-refund" element={<CancellationRefundPage />} />
       </Routes>
       <CartDrawer open={cartOpen} onClose={() => setCartOpen(false)} items={cart} updateQty={updateQty} remove={remove} />
-      <Toaster />
+      <Toaster position="top-center" />
     </BrowserRouter>
   );
 }
