@@ -5,6 +5,7 @@ import { CurrencySelector } from "./CurrencySelector";
 import { useCart } from "@/lib/CartContext";
 
 const links = [
+  { href: "/", label: "Home" },
   { href: "/shop", label: "Shop" },
   { href: "/story", label: "Our Story" },
   { href: "/why", label: "Why Us" },
