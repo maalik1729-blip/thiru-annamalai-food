@@ -40,9 +40,11 @@ export function WishlistButton({ productId, productName }: { productId: string, 
   );
 }
 
-export function ProductCard({ p, onAdd, formatPrice }: { p: Product, onAdd: (p: Product) => void, formatPrice: (n: number) => string }) {
+export function ProductCard({ p, onAdd, formatPrice }: { p: Product, onAdd: (p: Product, qty: number) => void, formatPrice: (n: number) => string }) {
+  const [qty, setQty] = useState(1);
+
   return (
-    <article className="group bg-card rounded-2xl overflow-hidden border border-border hover:shadow-warm transition-all duration-500 flex flex-col">
+    <article className="group bg-card rounded-2xl overflow-hidden border border-border hover:shadow-warm transition-all duration-500 flex flex-col relative">
       <div className="relative aspect-square bg-secondary">
         <Link to={`/product/${p.id}`} className="absolute inset-0 overflow-hidden block">
           <img
@@ -51,40 +53,66 @@ export function ProductCard({ p, onAdd, formatPrice }: { p: Product, onAdd: (p: 
             loading="lazy"
             width={896}
             height={896}
-            className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700"
+            className="h-full w-full object-cover group-hover:scale-[1.03] transition-transform duration-700"
           />
           {p.badge && (
-            <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-background/90 backdrop-blur text-[10px] uppercase tracking-wider font-semibold text-primary">
+            <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-accent/90 backdrop-blur text-[9px] uppercase tracking-wider font-bold text-white shadow-xs">
               {p.badge}
             </span>
           )}
         </Link>
         <WishlistButton productId={p.id} productName={p.name} />
       </div>
-      <div className="p-5 space-y-3 flex-1 flex flex-col">
+      <div className="p-5 space-y-3 flex-1 flex flex-col bg-white">
         <div>
           <Link to={`/product/${p.id}`}>
-            <h3 className="font-display text-xl hover:text-accent transition-colors">{p.name}</h3>
+            <h3 className="font-display text-xl text-stone-900 hover:text-accent transition-colors leading-tight">{p.name}</h3>
           </Link>
-          <p className="text-xs text-muted-foreground mt-1">{p.tagline}</p>
+          <p className="text-xs text-muted-foreground mt-1 min-h-6">{p.tagline}</p>
         </div>
-        <div className="flex items-center gap-2 text-xs">
+        <div className="flex items-center gap-1.5 text-xs">
           <Stars rating={p.rating} />
-          <span className="text-muted-foreground">{p.rating}</span>
+          <span className="text-stone-500 font-semibold">{p.rating}</span>
+          <span className="text-stone-300">|</span>
+          <span className="text-stone-400 text-[10px] uppercase font-bold tracking-wider">{p.reviews} reviews</span>
         </div>
-        <ul className="text-xs text-muted-foreground space-y-1 pt-2 border-t border-border flex-1">
-          <li><span className="text-foreground/70">Weight:</span> {p.weight}</li>
-          <li><span className="text-foreground/70">Shelf life:</span> {p.shelfLife}</li>
-          <li className="line-clamp-2"><span className="text-foreground/70">Made with:</span> {p.ingredients}</li>
+        <ul className="text-xs text-stone-500 space-y-1.5 pt-2 border-t border-stone-200/50 flex-1">
+          <li><span className="text-stone-400 font-medium">Weight:</span> {p.weight}</li>
+          <li><span className="text-stone-400 font-medium">Shelf life:</span> {p.shelfLife}</li>
+          <li className="line-clamp-2"><span className="text-stone-400 font-medium">Ingredients:</span> {p.ingredients}</li>
         </ul>
-        <div className="flex items-center justify-between pt-2 mt-auto">
-          <span className="font-display text-2xl">{formatPrice(p.price)}</span>
-          <button
-            onClick={() => onAdd(p)}
-            className="px-4 h-9 rounded-full bg-primary text-primary-foreground text-xs font-medium hover:bg-accent hover:text-accent-foreground transition-colors active:scale-95"
-          >
-            Add to cart
-          </button>
+        
+        {/* Foot Action Row with Quantity Selector */}
+        <div className="flex items-center justify-between pt-3 mt-auto border-t border-stone-100 gap-2">
+          <span className="font-display text-2xl font-bold text-stone-900">{formatPrice(p.price)}</span>
+          
+          <div className="flex items-center gap-1.5">
+            {/* Quantity +/- Adjuster */}
+            <div className="flex items-center bg-stone-50 border border-stone-200 rounded-full p-0.5 shadow-2xs">
+              <button 
+                onClick={(e) => { e.preventDefault(); e.stopPropagation(); setQty(Math.max(1, qty - 1)); }} 
+                className="h-6 w-6 grid place-items-center rounded-full hover:bg-stone-200 transition-colors active:scale-90 text-stone-600"
+                aria-label="Decrease quantity"
+              >
+                <Minus className="h-2.5 w-2.5" />
+              </button>
+              <span className="text-xs font-semibold w-5 text-center text-stone-850 select-none">{qty}</span>
+              <button 
+                onClick={(e) => { e.preventDefault(); e.stopPropagation(); setQty(qty + 1); }} 
+                className="h-6 w-6 grid place-items-center rounded-full hover:bg-stone-200 transition-colors active:scale-90 text-stone-600"
+                aria-label="Increase quantity"
+              >
+                <Plus className="h-2.5 w-2.5" />
+              </button>
+            </div>
+            
+            <button
+              onClick={() => { onAdd(p, qty); toast.success(`Added ${qty} ${p.name} to cart!`); }}
+              className="h-8 px-3.5 rounded-full bg-primary text-primary-foreground text-xs font-bold hover:bg-accent hover:text-accent-foreground transition-all duration-300 active:scale-95 shadow-xs"
+            >
+              Add
+            </button>
+          </div>
         </div>
       </div>
     </article>
@@ -97,14 +125,14 @@ function Stars({ rating }: { rating: number }) {
       {[1, 2, 3, 4, 5].map((i) => (
         <Star
           key={i}
-          className={`h-3.5 w-3.5 ${i <= Math.round(rating) ? "fill-accent text-accent" : "text-border"}`}
+          className={`h-3.5 w-3.5 ${i <= Math.round(rating) ? "fill-accent text-accent animate-pulse-once" : "text-stone-200"}`}
         />
       ))}
     </div>
   );
 }
 
-export function ProductsSection({ onAdd }: { onAdd: (p: Product) => void }) {
+export function ProductsSection({ onAdd }: { onAdd: (p: Product, qty: number) => void }) {
   const { formatPrice } = useCurrency();
   const [searchParams, setSearchParams] = useSearchParams();
   const category = searchParams.get("category") || "all";
@@ -124,35 +152,39 @@ export function ProductsSection({ onAdd }: { onAdd: (p: Product) => void }) {
   ];
 
   return (
-    <section id="shop" className="py-12 md:py-16 bg-gradient-to-b from-background to-cream/40">
+    <section id="shop" className="py-16 bg-linear-to-b from-background to-cream/40 border-b border-stone-200/40">
       <div className="container-prose">
-        <div className="mb-8 max-w-2xl">
-          <p className="text-sm uppercase tracking-[0.2em] text-accent font-medium mb-2">The Collection</p>
-          <h2 className="text-4xl md:text-5xl font-display mb-4">Premium laddus, bars & healthy snacks, handmade daily.</h2>
-          <p className="text-muted-foreground text-lg">
-            Made fresh daily in our Madurai kitchen. Each product crafted with traditional recipes and natural ingredients.
+        <div className="mb-10 max-w-2xl">
+          <p className="text-xs uppercase tracking-[0.2em] text-accent font-bold mb-2">The Collection</p>
+          <h2 className="text-4xl md:text-5xl font-display mb-4 text-stone-900">Premium laddus, bars & healthy snacks, handmade daily.</h2>
+          <p className="text-muted-foreground text-base leading-relaxed">
+            Made fresh daily in our Madurai kitchen. Each product crafted with traditional recipes, organic stone-ground flours, pure A2 ghee, and raw jaggery.
           </p>
         </div>
 
-        <div className="flex flex-wrap gap-2 mb-8">
-          {categories.map(c => (
-            <button
-              key={c.id}
-              onClick={() => setSearchParams({ category: c.id }, { replace: true })}
-              className={`px-5 py-2 rounded-full text-sm font-medium transition-colors ${
-                category === c.id 
-                  ? "bg-accent text-accent-foreground" 
-                  : "bg-background border border-border text-foreground hover:bg-secondary"
-              }`}
-            >
-              {c.label}
-            </button>
-          ))}
+        {/* Elegant Alabaster Pills Filter */}
+        <div className="flex flex-wrap gap-3 mb-10">
+          {categories.map(c => {
+            const isActive = category === c.id;
+            return (
+              <button
+                key={c.id}
+                onClick={() => setSearchParams({ category: c.id }, { replace: true })}
+                className={`px-6 py-2.5 rounded-full text-xs uppercase tracking-wider font-bold transition-all duration-300 ${
+                  isActive 
+                    ? "bg-accent text-accent-foreground shadow-md scale-102 ring-2 ring-accent/35" 
+                    : "bg-white border border-stone-200 text-stone-600 hover:bg-stone-50 hover:border-stone-300 shadow-2xs"
+                }`}
+              >
+                {c.label}
+              </button>
+            );
+          })}
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {filteredProducts.length === 0 ? (
-            <div className="col-span-full py-12 text-center text-muted-foreground bg-white/50 rounded-2xl border border-dashed border-border">
+            <div className="col-span-full py-16 text-center text-muted-foreground bg-white/50 rounded-2xl border border-dashed border-border">
               No products found in this category yet. Please check back later!
             </div>
           ) : (
@@ -177,7 +209,7 @@ export function StorySection() {
             loading="lazy"
             width={1280}
             height={896}
-            className="rounded-3xl shadow-soft w-full object-cover aspect-[4/5]"
+            className="rounded-3xl shadow-soft w-full object-cover aspect-4/5"
           />
           <div className="absolute -bottom-6 -right-6 hidden md:block bg-card border border-border rounded-2xl p-5 shadow-warm max-w-[200px]">
             <p className="font-display text-3xl text-primary">100%</p>
@@ -251,7 +283,7 @@ export function WhyUs({ hideBottomWave }: { hideBottomWave?: boolean }) {
       </div>
     </section>
     {!hideBottomWave && (
-      <div className="w-full overflow-hidden leading-[0] -mt-[1px] rotate-180">
+      <div className="w-full overflow-hidden leading-0 -mt-px rotate-180">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" className="w-full block h-auto max-h-[60px] md:max-h-[120px]" preserveAspectRatio="none">
           <path fill="var(--cocoa)" fillOpacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
         </svg>
@@ -456,7 +488,7 @@ export function Contact() {
 export function Footer() {
   return (
     <>
-      <div className="w-full overflow-hidden leading-[0] -mb-[1px]">
+      <div className="w-full overflow-hidden leading-0 -mb-px">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" className="w-full block h-auto max-h-[60px] md:max-h-[120px]" preserveAspectRatio="none">
           <path fill="var(--cocoa)" fillOpacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
         </svg>
