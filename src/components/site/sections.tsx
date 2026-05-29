@@ -540,7 +540,7 @@ export function Footer() {
         </div>
 
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-cream/60">
-          <p>© 2019 Thiru Annamalai Natural Foods. Flat No - 1760, TNHB Colony, Mela Anuppanadi, Madurai, Tamil Nadu - 625009. Owner: Vijaya Kumar R</p>
+          <p>© 2025 Thiru Annamalai Natural Foods. Flat No - 1760, TNHB Colony, Mela Anuppanadi, Madurai, Tamil Nadu - 625009. Owner: Vijaya Kumar R</p>
           <div className="flex items-center gap-3">
             <span>We accept</span>
             <div className="flex gap-2">
